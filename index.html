@@ -120,8 +120,8 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
    <p class="desc">힉스필드에서 바로 쓰는 유명 모델 3개 중에서 고릅니다.</p>
    <div class="seg" id="m2"><button data-i="0" class="on">Kling 3.0</button><button data-i="1">Seedance 2.5</button><button data-i="2">Cinema Studio 3.0</button></div>
    <div class="big">12.9<small>만원 / 영상 1분</small></div>
-   <dl class="kv"><dt>1분 순수 생성</dt><dd id="m2t">18~30분</dd><dt>한 번 최대</dt><dd id="m2l">15초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷 · 소리 맞춤 · 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
-  <div class="card plan fade" style="--pc:var(--a3)"><span class="badge">준보 님 제안 · 2주 시험 후 검토</span><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
+   <dl class="kv"><dt>1분 순수 생성</dt><dd id="m2t">6~10분</dd><dt>한 번 최대</dt><dd id="m2l">30초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷 · 소리 맞춤 · 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
+  <div class="card plan fade" style="--pc:var(--a3)"><span class="badge">준보 님 제안 · 1주 시험 후 검토</span><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
    <p class="desc">빌린 GPU에서 돌릴 오픈 모델 3개 중에서 고릅니다.</p>
    <div class="seg" id="m3"><button data-i="0" class="on">Wan 2.2</button><button data-i="1">LTX-2.3</button><button data-i="2">MiniMax H3</button></div>
    <div class="big">3.2<small>만원 / 영상 1분</small></div>
@@ -167,8 +167,8 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
   <div class="seg" id="rs"><button data-k="480">480p</button><button data-k="720">720p</button><button data-k="1080" class="on">1080p (FHD)</button><button data-k="2k">2K</button><button data-k="4k">4K</button></div>
   <div style="font-size:13px;color:var(--sub);margin:14px 0 6px">완성 영상 길이</div>
   <div class="seg" id="ln"><button data-l="0.25">15초</button><button data-l="0.5">30초</button><button data-l="1" class="on">1분</button><button data-l="2">2분</button><button data-l="3">3분</button><button data-l="5">5분</button><button data-l="10">10분</button></div>
-  <div class="tw" style="margin-top:18px"><table><thead><tr><th></th><th>만드는 시간</th><th>드는 돈</th><th>이 해상도는</th></tr></thead><tbody id="rt"></tbody></table></div>
-  <p class="note">시간은 프롬프트를 넣고 순수하게 만드는 시간만 셌습니다(프롬프트 쓰기·다시 뽑기·고르기·편집 뺌, 하나씩 차례로 만든다고 가정). 720p 기준: 2안 Kling은 준보 님 실측(한 번 3~5분)으로 10초 컷 6개 = 18~30분, 다른 두 모델은 추정. 0·1·3안은 Wan 2.2 14B(0안은 5B) 5초 컷 12개 기준 추정. 1080p 이상은 0·1·3안은 업스케일(1080p +15% · 2K +35% · 4K +70%, 0안 4K +120%), 2안은 바로 만들되 1080p 1.3배 · 2K 1.6배 · 4K 2배. 480p는 720p의 약 0.5~0.8배. 돈은 위 1분 단가(쓸 컷 하나에 4번 생성 가정)이고 1안 처음 PC 값은 뺐습니다. 위 카드에서 고른 그래픽카드·모델이 이 표에 그대로 반영됩니다.</p>
+  <div class="tw" style="margin-top:18px"><table><thead><tr><th></th><th>만드는 시간</th><th>드는 돈</th></tr></thead><tbody id="rt"></tbody></table></div>
+  <p class="note">· 시간: 프롬프트 넣고 <b>순수하게 만드는 시간</b>만(쓰기·다시 뽑기·편집 뺌)<br>· 2안 Kling: 준보 님 실측 — 한 번에 30초, 3~5분. 다른 모델·0·1·3안은 추정<br>· 1080p 이상: 0·1·3안은 720p로 만든 뒤 화질 올림(시간 +15~70%), 2안은 그대로 만듦<br>· 돈: 1안 PC 구매비는 뺌</p>
  </div>
 </section>
 
@@ -220,7 +220,7 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
   <tr><th></th><th><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</th><th><span class="dot" style="background:var(--a1)"></span>1안 구매</th><th><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</th><th><span class="dot" style="background:var(--a3)"></span>3안 대여</th></tr>
   <tr><td><b>처음 드는 돈</b></td><td>0원</td><td>약 <span class="g1p">450</span>만원<br><span style="color:var(--mute);font-size:12px"><span class="g1n">RTX 5080 16GB</span> 카드 + 본체 약 200만원 추정</span></td><td>0원 (월 $49~129)</td><td>0원</td></tr>
   <tr><td><b>완성 영상 1초</b></td><td>0원</td><td>0원</td><td>1,120~3,190원 (중간 2,160원)</td><td>350~700원 (중간 530원)</td></tr><tr><td><b>완성 영상 1분</b></td><td>0원</td><td>0원</td><td>6.7~19.2만원 (중간 12.9만원)</td><td>2.1~4.2만원 (중간 3.2만원)</td></tr>
-  <tr><td><b>1분 순수 생성</b><br><span style="color:var(--mute);font-size:12px">프롬프트·고르기·편집 뺌, 720p</span></td><td>3~6시간</td><td><span class="g1t">1.2~2시간</span></td><td><span class="m2t">18~30분</span></td><td><span class="m3t">40분~1시간</span></td></tr>
+  <tr><td><b>1분 순수 생성</b><br><span style="color:var(--mute);font-size:12px">프롬프트·고르기·편집 뺌, 720p</span></td><td>3~6시간</td><td><span class="g1t">1.2~2시간</span></td><td><span class="m2t">6~10분</span></td><td><span class="m3t">40분~1시간</span></td></tr>
   <tr><td><b>첫 영상까지</b></td><td>3~5일 (설치·시험)</td><td>2~4주 (품의·구매·조립 + 설치)</td><td>1~2일</td><td>1~2주</td></tr>
   <tr><td><b>품질 상한</b></td><td>중하 (작은 모델 · 480~720p → 업스케일)</td><td>중 (오픈 모델)</td><td>최상 (상용 최신)</td><td>중 (1안과 같음)</td></tr>
   <tr><td><b>영업팀 쓰기</b></td><td>에이전트를 통해서만</td><td>에이전트를 통해서만</td><td>쉬움 — 웹 직접 + 에이전트</td><td>에이전트를 통해서만</td></tr>
@@ -271,7 +271,7 @@ RunPod 가격 — <a href="https://www.runpod.io/gpu-cloud/pricing">runpod.io</a
 <script>
 const C={0:'#3d3d3a',1:'#1f6fe0',2:'#f07a1a',3:'#0e9f5f'};const DASH={0:'2 5',1:'',2:'',3:'9 5'};const CAP0=10;
 let V=10,M=12;
-let P1=450,H1=1.6,H2=0.4,H3=0.8,N2="2안 Kling 3.0",N3="3안 Wan 2.2";const GP=[["RTX 5080 16GB",250,450,"1.2~2시간",1.6,"중 (14B 축소판)"],["RTX 5070 Ti 16GB",180,370,"1.5~2.5시간",2,"중 (14B 축소판)"],["RTX 5060 Ti 16GB",100,280,"2.5~4시간",3.2,"중하~중 (5B · 14B 축소판)"]];
+let P1=450,H1=1.6,H2=0.13,H3=0.8,N2="2안 Kling 3.0",N3="3안 Wan 2.2";const GP=[["RTX 5080 16GB",250,450,"1.2~2시간",1.6,"중 (14B 축소판)"],["RTX 5070 Ti 16GB",180,370,"1.5~2.5시간",2,"중 (14B 축소판)"],["RTX 5060 Ti 16GB",100,280,"2.5~4시간",3.2,"중하~중 (5B · 14B 축소판)"]];
 const f0=(v,m)=>0, f1=(v,m)=>P1+3*m, f2=(v,m)=>12.9*v*m, f3=(v,m)=>3.2*v*m+1.5*m;
 const won=x=>x===0?'0':x>=10000?(x/10000).toFixed(x>=100000?0:1)+'억':Math.round(x).toLocaleString()+'만';
 function draw(){
@@ -353,7 +353,7 @@ document.querySelectorAll('#gpu button').forEach(b=>b.onclick=()=>{document.quer
  document.querySelectorAll('.g1p').forEach(e=>e.textContent=g[2]);document.querySelectorAll('.g1n').forEach(e=>e.textContent=g[0]);document.querySelectorAll('.g1t').forEach(e=>e.textContent=g[3]);
  draw();if(window.rRes)rRes();});
 
-const M2=[["Kling 3.0","18~30분",0.4,"15초","720p · 1080p · 4K","여러 컷 · 소리 맞춤 · 동작"],["Seedance 2.5","15~30분",0.4,"30초","480p~4K","사진 여러 장 참고 · 영상 이어 붙이기"],["Cinema Studio 3.0","20~40분",0.5,"15초","480p~4K","영화 같은 화면 · 최고 화질"]];
+const M2=[["Kling 3.0","6~10분",0.13,"30초","720p · 1080p · 4K","여러 컷 · 소리 맞춤 · 동작"],["Seedance 2.5","15~30분",0.4,"30초","480p~4K","사진 여러 장 참고 · 영상 이어 붙이기"],["Cinema Studio 3.0","20~40분",0.5,"15초","480p~4K","영화 같은 화면 · 최고 화질"]];
 const M3=[["Wan 2.2","40분~1시간",0.8,"중","상업 사용 무료","됨"],["LTX-2.3","10~20분",0.25,"중","연매출 1천만$↑ 유료","됨"],["MiniMax H3","1~1.5시간",1.2,"상 (오픈 모델 1등)","한국 금지 → 허락 받아야","확인 못 함"]];
 function seg(id,f){document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));f(+b.dataset.i);if(window.rRes)rRes();});}
 const st=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
@@ -370,7 +370,7 @@ const mw=x=>x===0?'0원':x<1?Math.round(x*10000).toLocaleString()+'원':(Math.ro
 function r(){let h='';for(let [i,n,t,c,ty] of P){if(i===1)t=H1;if(i===2){t=H2;n=N2}if(i===3){t=H3;n=N3}let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
  const hr=t*tf*Ln,won=(ty==='api'?c*CF[K]:c*tf)*Ln;
  let nt=ty==='api'?(K==='2k'||K==='4k'?'1080p로 만들고 업스케일':'바로 만듦'):(K==='480'||K==='720'?'바로 만듦':'720p로 만들고 업스케일');
- h+=`<tr><td><span class="dot" style="background:${C[i]}"></span><b>${n}</b></td><td><b>${ht(hr)}</b></td><td>${mw(won)}</td><td style="color:var(--sub)">${nt}</td></tr>`;}
+ h+=`<tr><td><span class="dot" style="background:${C[i]}"></span><b>${n}</b></td><td><b>${ht(hr)}</b></td><td>${mw(won)}</td></tr>`;}
  document.getElementById('rt').innerHTML=h;}
 const bind=(id,f)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f(b);r();});
 bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);window.rRes=r;r();})();
