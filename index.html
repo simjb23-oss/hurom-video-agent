@@ -3,7 +3,7 @@
 <title>휴롬 영상 에이전트 기획서</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{--a0:#7a5af5;--bg:#f6f5f2;--card:#fff;--ink:#0b0b0b;--sub:#52514e;--mute:#8a8984;--line:#e6e4df;--a1:#2a78d6;--a2:#eb6834;--a3:#1baf7a;--warn:#c4442b}
+:root{--a0:#3d3d3a;--bg:#f6f5f2;--card:#fff;--ink:#0b0b0b;--sub:#52514e;--mute:#8a8984;--line:#e6e4df;--a1:#1f6fe0;--a2:#f07a1a;--a3:#0e9f5f;--warn:#c4442b}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Pretendard,"맑은 고딕",system-ui,sans-serif;word-break:keep-all}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -133,7 +133,7 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
    <div class="be" id="be"></div>
   </div>
   <div class="card"><svg id="cc" class="chart" viewBox="0 0 720 400"></svg>
-   <div class="legend"><span><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</span><span><span class="dot" style="background:var(--a1)"></span>1안 구매</span><span><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</span><span><span class="dot" style="background:var(--a3)"></span>3안 대여</span></div>
+   <div class="legend"><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#3d3d3a" stroke-width="2.8" stroke-dasharray="2 5" stroke-linecap="round"/></svg> 0안 회사 5060</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#1f6fe0" stroke-width="3.4"  stroke-linecap="round"/></svg> 1안 구매</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#f07a1a" stroke-width="2.8"  stroke-linecap="round"/></svg> 2안 힉스필드</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#0e9f5f" stroke-width="2.8" stroke-dasharray="9 5" stroke-linecap="round"/></svg> 3안 대여</span></div>
    <p class="note">가정(중간값, 완성 영상 1분 기준): 1안 처음 1,600만원 + 전기 0.13만원 + 월 관리 3만원 · 2안 12.9만원(생성 1초 0.2~0.57달러, 쓸 컷 하나에 4번 생성해 고름) · 3안 3.2만원(H100 시간당 2.7~4.4달러) + 월 저장 1.5만원 · 0안 전기료 0.11만원(PC 약 300W × 25시간), 밤에만 돌리면 한 달 약 10분이 한계(넘으면 선이 흐려짐), 5060 8GB 기준 추정. 환율 1,400원. 참고: 숏폼 15~30초 1편 ≈ 0.25~0.5분. 실제 크레딧 단가는 결제 후 시험 생성으로 확정합니다.</p></div>
  </div>
 </section>
@@ -248,13 +248,13 @@ RunPod 가격 — <a href="https://www.runpod.io/gpu-cloud/pricing">runpod.io</a
 </div></footer>
 
 <script>
-const C={0:'#7a5af5',1:'#2a78d6',2:'#eb6834',3:'#1baf7a'};const CAP0=10;
+const C={0:'#3d3d3a',1:'#1f6fe0',2:'#f07a1a',3:'#0e9f5f'};const DASH={0:'2 5',1:'',2:'',3:'9 5'};const CAP0=10;
 let V=10,M=12;
 const f0=(v,m)=>0.11*v*m, f1=(v,m)=>1600+0.13*v*m+3*m, f2=(v,m)=>12.9*v*m, f3=(v,m)=>3.2*v*m+1.5*m;
 const won=x=>x>=10000?(x/10000).toFixed(x>=100000?0:1)+'억':Math.round(x).toLocaleString()+'만';
 function draw(){
  document.getElementById('v').textContent=V;
- const s=document.getElementById('cc'),W=720,H=400,L=64,R=96,T=20,B=40;
+ const s=document.getElementById('cc'),W=720,H=400,L=64,R=124,T=20,B=40;
  const ymax=Math.max(f0(V,M),f1(V,M),f2(V,M),f3(V,M))*1.08;
  const x=m=>L+(W-L-R)*m/M,y=c=>H-B-(H-T-B)*c/ymax;
  let g='';
@@ -265,17 +265,17 @@ function draw(){
  const lines=[[0,f0],[1,f1],[2,f2],[3,f3]];
  for(const [k,f] of lines){
   let d='';for(let m=0;m<=M;m+=.25) d+=(m?'L':'M')+x(m).toFixed(1)+','+y(f(V,m)).toFixed(1);
-  g+=`<path d="${d}" fill="none" stroke="${C[k]}" stroke-width="2.6" stroke-linecap="round" ${k===0&&V>CAP0?'opacity=".45"':'class="ln"'}/>`;
+  g+=`<path d="${d}" fill="none" stroke="${C[k]}" stroke-width="${k===1?3.4:2.8}" stroke-linecap="round" ${DASH[k]?`data-dash="${DASH[k]}"`:''} ${k===0&&V>CAP0?'opacity=".45"':'class="ln"'}/>`;
   g+=`<circle cx="${x(M)}" cy="${y(f(V,M))}" r="4" fill="${C[k]}"/>`;
  }
  const lb=lines.map(([k,f])=>({k,v:f(V,M),y:y(f(V,M))+4})).sort((p,q)=>p.y-q.y);
- for(let i=1;i<lb.length;i++) if(lb[i].y-lb[i-1].y<16) lb[i].y=lb[i-1].y+16;
- lb.forEach(l=>g+=`<text x="${x(M)+8}" y="${l.y}" font-size="12" font-weight="700" fill="${C[l.k]}">${won(l.v)}원</text>`);
+ for(let i=1;i<lb.length;i++) if(lb[i].y-lb[i-1].y<17) lb[i].y=lb[i-1].y+17;
+ lb.forEach(l=>g+=`<text x="${x(M)+8}" y="${l.y}" font-size="12" font-weight="700" fill="${C[l.k]}">${l.k}안 ${won(l.v)}원</text>`);
  const b12=1600/((12.9-0.13)*V-3), b13=1600/(3.07*V-1.5);
  for(const [b,f,lab] of [[b12,f2,'1안=2안'],[b13,f3,'1안=3안']]) if(b>0&&b<=M){
   g+=`<line x1="${x(b)}" x2="${x(b)}" y1="${T}" y2="${H-B}" stroke="#0b0b0b" stroke-dasharray="3 4" opacity=".35"/><circle cx="${x(b)}" cy="${y(f(V,b))}" r="5.5" fill="#fff" stroke="#0b0b0b" stroke-width="2"/><text x="${x(b)+8}" y="${y(f(V,b))-10}" font-size="12" font-weight="700">${lab} · ${b.toFixed(1)}개월</text>`;}
  s.innerHTML=g;
- s.querySelectorAll('.ln').forEach(p=>{const l=p.getTotalLength();p.style.strokeDasharray=l;p.style.strokeDashoffset=l;p.getBoundingClientRect();p.style.transition='stroke-dashoffset .7s ease';p.style.strokeDashoffset=0});
+ s.querySelectorAll('.ln').forEach(p=>{const l=p.getTotalLength();if(p.dataset.dash){p.setAttribute('stroke-dasharray',p.dataset.dash);return}p.style.strokeDasharray=l;p.style.strokeDashoffset=l;p.getBoundingClientRect();p.style.transition='stroke-dashoffset .7s ease';p.style.strokeDashoffset=0});
  const t=[[0,'0안 회사 5060',f0],[1,'1안 구매',f1],[2,'2안 힉스필드',f2],[3,'3안 대여',f3]].map(([k,n,f])=>[k,n,f(V,M)]);
  const over=V>CAP0;const min=Math.min(...t.filter(a=>!(a[0]===0&&over)).map(a=>a[2]));
  document.getElementById('tots').innerHTML=`<div style="font-size:13px;color:var(--sub)">${M}개월 누적</div>`+t.map(([k,n,c])=>`<div class="tot"><span><span class="dot" style="background:${C[k]}"></span>${n}${c===min?' <span class="chk done">가장 쌈</span>':''}${k===0&&over?' <span class="chk wait">한 달 약 '+CAP0+'분 넘음</span>':''}</span><b>${won(c)}원</b></div>`).join('');
@@ -302,10 +302,10 @@ sw.querySelectorAll('.step').forEach(e=>e.onclick=()=>pick(+e.dataset.i));pick(0
 
 const AX=['제품 형태','재질·빛','손·동작','한글 글자','길이·해상도','비용·시간'];
 const MD=[['Seedance 2.5','2안',[5,5,4,2,5,2],C[2],'제품 사진→영상 1위. 스텐·유리 반사와 과일 질감이 가장 좋고 4K.','가장 비쌈(1초 0.57달러).'],
-['Kling 4.0','2안',[4,4,4,2,4,3],'#f2a27f','손·사람 동작이 자연스러움(착즙 장면). 값이 중간.','최고 1080p, 재질은 Seedance보다 약간 아래.'],
-['Cinema Studio 3.0','2안',[4,5,4,2,5,2],'#b8481d','영화 같은 카메라·색감, 4K·최대 15초.','비싼 편, 제품 형태 유지가 Seedance보다 약간 아래.'],
+['Kling 4.0','2안',[4,4,4,2,4,3],'#d6336c','손·사람 동작이 자연스러움(착즙 장면). 값이 중간.','최고 1080p, 재질은 Seedance보다 약간 아래.'],
+['Cinema Studio 3.0','2안',[4,5,4,2,5,2],'#7c3aed','영화 같은 카메라·색감, 4K·최대 15초.','비싼 편, 제품 형태 유지가 Seedance보다 약간 아래.'],
 ['Wan 2.2 14B','1·3안',[3,3,3,1,2,4],C[3],'상업 사용 무료, 제품 전용 학습(LoRA), 대여 GPU에서 싸게.','720p·5초 단위라 컷을 이어 붙여야 함, 주스 액체 표현이 덜 자연스러움.'],
-['LTX-2.3','1·3안',[2,3,2,1,4,4],'#6fcfa9','4K·긴 컷·소리까지 한 번에, 빠름.','디테일이 Wan보다 약함, 휴롬 규모면 유료 라이선스.'],
+['LTX-2.3','1·3안',[2,3,2,1,4,4],'#0891b2','4K·긴 컷·소리까지 한 번에, 빠름.','디테일이 Wan보다 약함, 휴롬 규모면 유료 라이선스.'],
 ['MiniMax H3','참고',[3,4,3,2,3,3],'#8a8984','오픈 모델 중 품질 최고.','라이선스상 한국 사용 불가 — 쓰지 않음.']];
 let on=new Set([0,3]);
 function radar(){
