@@ -105,12 +105,12 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
 @media(max-width:640px){.pick>div{width:100%}.pick .seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);width:100%}.pick .seg button{padding:6px 0}.rrow{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.rrow .bar{grid-column:1/-1;order:3}.rrow.hd{display:none}}
 
 /* base length bar */
-.basebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:26px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.basebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
 .basebar .lab{font-size:13px;font-weight:700}.basebar .hint{font-size:12.5px;color:var(--mute)}
 .basebar .seg button{padding:7px 18px;font-weight:600}
 
 /* purpose bar */
-.purp{margin-top:12px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.purp{margin-top:26px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
 .purp .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}.purp .lab{font-size:13px;font-weight:700}
 .purp .seg{flex-wrap:wrap}.purp .seg button{padding:7px 14px;font-weight:600}
 .purp .rec{margin-top:12px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;line-height:1.55}
@@ -130,11 +130,11 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
  <h1>판매 영상 만드는 방법 4가지<br><span style="color:var(--sub)">비용 · 시간 · 품질 비교</span></h1>
  <p class="lead">완성 영상 <b class="bl">30초</b> 기준으로, 만드는 데 드는 돈과 시간으로 네 가지 방법을 비교했습니다. 판단은 아래 숫자와 비교 시험 결과로 하시면 됩니다.</p>
 
- <div class="basebar"><span class="lab">완성 영상 길이 기준</span><div class="seg" id="base"><button data-f="0.3333">20초</button><button data-f="0.5" class="on">30초</button><button data-f="1">1분</button></div><span class="hint">누르면 아래 네 카드의 순수 생성 시간과 돈이 이 길이 기준으로 바뀝니다.</span></div>
- 
  <div class="purp" id="purp"><div class="top"><span class="lab">어디에 쓸 영상인가요</span><div class="seg" id="pseg"><button data-p="0" class="on">홈쇼핑·상세페이지</button><button data-p="1">SNS 숏폼·광고</button><button data-p="2">매장·전시 반복 영상</button><button data-p="3">사내 교육·설명</button></div></div>
   <p class="bg" style="margin:10px 0 0;font-size:13px;color:var(--sub)"><b>배경</b> · 회사 자금을 아끼는 게 먼저입니다(강응찬 팀장님 제안 · 따로 승인 없음). 그래서 목적마다 <b>가장 적게 쓰고 시작하는 안</b>을 추천하고, PC 구매처럼 먼저 큰돈 드는 건 추천하지 않습니다.</p>
   <dl class="rec" id="prec"></dl></div>
+ <div class="basebar"><span class="lab">완성 영상 길이 기준</span><div class="seg" id="base"><button data-f="0.3333">20초</button><button data-f="0.5" class="on">30초</button><button data-f="1">1분</button></div><span class="hint">누르면 아래 네 카드의 순수 생성 시간과 돈이 이 길이 기준으로 바뀝니다.</span></div>
+ 
  <div class="cards c4" style="margin-top:30px">
   <div class="card plan fade" style="--pc:var(--a0)">
    <div class="tag"><span class="dot" style="background:var(--a0)"></span>0안</div><h3>회사 RTX 5060</h3><span class="tool">ComfyUI · 회사 PC</span>
@@ -153,7 +153,7 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
    <div class="seg" id="m2"><button data-i="0" class="on">Kling 3.0</button><button data-i="1">Seedance 2.5</button><button data-i="2">Cinema Studio 3.0</button></div>
    <div class="big"><span class="sw">12.9</span><small>만원 / 영상 <span class="bl">1분</span></small></div>
    <dl class="kv"><dt><span class="bl">1분</span> 순수 생성</dt><dd class="sc" id="m2t">6~10분</dd><dt>한 번 최대</dt><dd id="m2l">30초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷&nbsp;· 소리 맞춤&nbsp;· 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
-  <div class="card plan fade" style="--pc:var(--a3)"><span class="badge">준보 님 제안 · 1주 시험 후 검토</span><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
+  <div class="card plan fade" style="--pc:var(--a3)"><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
    <p class="desc">빌린 GPU에서 돌릴 오픈 모델 3개 중에서 고릅니다.</p>
    <div class="seg" id="m3"><button data-i="0" class="on">Wan 2.2</button><button data-i="1">LTX-2.3</button><button data-i="2">MiniMax H3</button></div>
    <div class="big"><span class="sw">3.2</span><small>만원 / 영상 <span class="bl">1분</span></small></div>
