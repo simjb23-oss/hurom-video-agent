@@ -92,6 +92,17 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
 .plan .kv{grid-template-columns:auto minmax(0,1fr);gap:7px 12px;font-size:13.5px;line-height:1.45}.plan .kv dt{white-space:nowrap}
 .plan .note{margin-top:auto;padding-top:12px;font-size:12px}
 .plan .badge{background:var(--pc);top:-13px;left:18px}
+
+/* res v2 */
+.pick{display:flex;flex-wrap:wrap;gap:14px 28px}.pick .lab{font-size:13px;color:var(--sub);margin-bottom:6px}.pick .seg{flex-wrap:wrap}
+.rlist{margin-top:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rrow{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr) 110px;gap:16px;align-items:center;padding:13px 16px;border-top:1px solid var(--line)}
+.rrow:first-child{border-top:0}.rrow.hd{background:#f3f2ee;font-size:12.5px;color:var(--sub);font-weight:600;padding:9px 16px}
+.rrow .nm{font-weight:700;font-size:14px;line-height:1.35}.rrow .nm small{display:block;font-weight:500;color:var(--mute);font-size:12px;margin-left:16px}
+.bar{display:flex;align-items:center;gap:10px}.bar i{display:block;height:10px;border-radius:99px;min-width:6px;transition:width .35s}
+.bar b{white-space:nowrap;font-size:15px}.rrow .won{text-align:right;font-weight:600;white-space:nowrap}
+.why{margin-top:6px;font-size:12.5px;color:var(--mute)}.why summary{cursor:pointer;color:var(--sub);font-weight:600}.why ul{margin:8px 0 0;padding-left:18px}.why li{margin:3px 0}
+@media(max-width:640px){.pick>div{width:100%}.pick .seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);width:100%}.pick .seg button{padding:6px 0}.rrow{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.rrow .bar{grid-column:1/-1;order:3}.rrow.hd{display:none}}
 </style></head><body>
 <nav><div class="wrap">
 <a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#res">해상도·길이</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">안별 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
@@ -163,12 +174,17 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
  <h2>해상도 · 영상 길이별 만드는 시간과 돈</h2>
  <p class="secsub">해상도와 완성 영상 길이를 누르면 안마다 걸리는 시간과 드는 돈이 바로 바뀝니다.</p>
  <div class="card">
-  <div style="font-size:13px;color:var(--sub);margin-bottom:6px">해상도</div>
-  <div class="seg" id="rs"><button data-k="480">480p</button><button data-k="720">720p</button><button data-k="1080" class="on">1080p (FHD)</button><button data-k="2k">2K</button><button data-k="4k">4K</button></div>
-  <div style="font-size:13px;color:var(--sub);margin:14px 0 6px">완성 영상 길이</div>
-  <div class="seg" id="ln"><button data-l="0.25">15초</button><button data-l="0.5">30초</button><button data-l="1" class="on">1분</button><button data-l="2">2분</button><button data-l="3">3분</button><button data-l="5">5분</button><button data-l="10">10분</button></div>
-  <div class="tw" style="margin-top:18px"><table><thead><tr><th></th><th>만드는 시간</th><th>드는 돈</th></tr></thead><tbody id="rt"></tbody></table></div>
-  <p class="note">· 시간: 프롬프트 넣고 <b>순수하게 만드는 시간</b>만(쓰기·다시 뽑기·편집 뺌)<br>· 2안 Kling: 준보 님 실측 — 한 번에 30초, 3~5분. 다른 모델·0·1·3안은 추정<br>· 1080p 이상: 0·1·3안은 720p로 만든 뒤 화질 올림(시간 +15~70%), 2안은 그대로 만듦<br>· 돈: 1안 PC 구매비는 뺌</p>
+  <div class="pick">
+   <div><div class="lab">해상도</div><div class="seg" id="rs"><button data-k="480">480p</button><button data-k="720">720p</button><button data-k="1080" class="on">1080p</button><button data-k="2k">2K</button><button data-k="4k">4K</button></div></div>
+   <div><div class="lab">완성 영상 길이</div><div class="seg" id="ln"><button data-l="0.25">15초</button><button data-l="0.5">30초</button><button data-l="1" class="on">1분</button><button data-l="2">2분</button><button data-l="3">3분</button><button data-l="5">5분</button><button data-l="10">10분</button></div></div>
+  </div>
+  <div class="rlist" id="rt"></div>
+  <p class="note" style="margin-top:14px">시간은 프롬프트를 넣은 뒤 <b>순수하게 만드는 시간</b>만입니다. 돈은 영상 1분 단가 기준이고, 1안 처음 PC 값은 뺐습니다. 위 카드에서 고른 그래픽카드와 모델이 그대로 반영됩니다.</p>
+  <details class="why"><summary>계산 근거 보기</summary><ul>
+   <li><b>720p 기준:</b> 2안 Kling은 준보 님 실측(한 번 3~5분)입니다. 다른 모델은 추정입니다. 0·1·3안은 Wan 2.2 5초 컷 12개로 잡았습니다.</li>
+   <li><b>1080p 이상:</b> 0·1·3안은 720p로 만든 뒤 화질을 올립니다(1080p +15% · 2K +35% · 4K +70%). 2안은 1080p까지 바로 만들고 2K·4K는 화질을 올립니다.</li>
+   <li><b>480p:</b> 720p의 약 0.5~0.8배입니다.</li>
+   <li><b>돈:</b> 쓸 컷 하나를 얻으려고 4번 만든다고 잡은 1분 단가입니다.</li></ul></details>
  </div>
 </section>
 
@@ -367,10 +383,13 @@ const CF={480:.6,720:.8,1080:1,'2k':1,'4k':1};
 let K='1080',Ln=1;
 const ht=h=>h<1?Math.round(h*60)+'분':h<48?(Math.round(h*10)/10)+'시간':(Math.round(h/24*10)/10)+'일 ('+Math.round(h)+'시간)';
 const mw=x=>x===0?'0원':x<1?Math.round(x*10000).toLocaleString()+'원':(Math.round(x*10)/10).toLocaleString()+'만원';
-function r(){let h='';for(let [i,n,t,c,ty] of P){if(i===1)t=H1;if(i===2){t=H2;n=N2}if(i===3){t=H3;n=N3}let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
+function r(){const rows=[];for(let [i,n,t,c,ty] of P){let sub='';if(i===1){t=H1;sub=(document.getElementById('g1n')||{}).textContent||''}if(i===2){t=H2;n=N2}if(i===3){t=H3;n=N3}let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
  const hr=t*tf*Ln,won=(ty==='api'?c*CF[K]:c*tf)*Ln;
- let nt=ty==='api'?(K==='2k'||K==='4k'?'1080p로 만들고 업스케일':'바로 만듦'):(K==='480'||K==='720'?'바로 만듦':'720p로 만들고 업스케일');
- h+=`<tr><td><span class="dot" style="background:${C[i]}"></span><b>${n}</b></td><td><b>${ht(hr)}</b></td><td>${mw(won)}</td></tr>`;}
+ const up=ty==='api'?(K==='2k'||K==='4k'):!(K==='480'||K==='720');
+ if(up)sub=(sub?sub+' · ':'')+'화질 올리기 포함';rows.push({i,n,sub,hr,won});}
+ const mx=Math.max(...rows.map(x=>x.hr));
+ let h='<div class="rrow hd"><span>안</span><span>만드는 시간</span><span style="text-align:right">드는 돈</span></div>';
+ for(const x of rows)h+=`<div class="rrow"><div class="nm"><span class="dot" style="background:${C[x.i]}"></span>${x.n}${x.sub?`<small>${x.sub}</small>`:''}</div><div class="bar"><i style="width:${Math.max(2,x.hr/mx*100*.78)}%;background:${C[x.i]}"></i><b>${ht(x.hr)}</b></div><div class="won">${mw(x.won)}</div></div>`;
  document.getElementById('rt').innerHTML=h;}
 const bind=(id,f)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f(b);r();});
 bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);window.rRes=r;r();})();
