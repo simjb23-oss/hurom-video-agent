@@ -78,7 +78,7 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
 @media print{nav{display:none}.fade{opacity:1;transform:none}section{break-inside:avoid}}
 </style></head><body>
 <nav><div class="wrap">
-<a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">안별 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
+<a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#res">해상도·길이</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">안별 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
 </div></nav>
 
 <div class="wrap">
@@ -135,6 +135,19 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
   <div class="card"><svg id="cc" class="chart" viewBox="0 0 720 400"></svg>
    <div class="legend"><span><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</span><span><span class="dot" style="background:var(--a1)"></span>1안 구매</span><span><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</span><span><span class="dot" style="background:var(--a3)"></span>3안 대여</span></div>
    <p class="note">가정(중간값, 완성 영상 1분 기준): 1안 처음 1,600만원 + 전기 0.13만원 + 월 관리 3만원 · 2안 12.9만원(생성 1초 0.2~0.57달러, 쓸 컷 하나에 4번 생성해 고름) · 3안 3.2만원(H100 시간당 2.7~4.4달러) + 월 저장 1.5만원 · 0안 전기료 0.11만원(PC 약 300W × 25시간), 밤에만 돌리면 한 달 약 10분이 한계(넘으면 선이 흐려짐), 5060 8GB 기준 추정. 환율 1,400원. 참고: 숏폼 15~30초 1편 ≈ 0.25~0.5분. 실제 크레딧 단가는 결제 후 시험 생성으로 확정합니다.</p></div>
+ </div>
+</section>
+
+<section id="res" class="fade">
+ <h2>해상도 · 영상 길이별 만드는 시간과 돈</h2>
+ <p class="secsub">해상도와 완성 영상 길이를 누르면 안마다 걸리는 시간과 드는 돈이 바로 바뀝니다.</p>
+ <div class="card">
+  <div style="font-size:13px;color:var(--sub);margin-bottom:6px">해상도</div>
+  <div class="seg" id="rs"><button data-k="480">480p</button><button data-k="720">720p</button><button data-k="1080" class="on">1080p (FHD)</button><button data-k="2k">2K</button><button data-k="4k">4K</button></div>
+  <div style="font-size:13px;color:var(--sub);margin:14px 0 6px">완성 영상 길이</div>
+  <div class="seg" id="ln"><button data-l="0.25">15초</button><button data-l="0.5">30초</button><button data-l="1" class="on">1분</button><button data-l="2">2분</button><button data-l="3">3분</button><button data-l="5">5분</button><button data-l="10">10분</button></div>
+  <div class="tw" style="margin-top:18px"><table><thead><tr><th></th><th>만드는 시간</th><th>드는 돈</th><th>이 해상도는</th></tr></thead><tbody id="rt"></tbody></table></div>
+  <p class="note">계산: 위 「1분 만드는 시간 · 1분 단가」 중간값에 해상도 배수를 곱했습니다. 0·1·3안(Wan 2.2)은 720p로 만들고 1080p 이상은 업스케일로 올립니다(1080p +15% · 2K +35% · 4K +70%, 0안 8GB는 4K 업스케일이 느려 +120%). 480p는 720p의 약 0.5배. 2안(힉스필드)은 1080p까지 바로 만들고 2K·4K는 업스케일, 크레딧은 해상도별 단가(480p 0.6배 · 720p 0.8배 · 1080p 이상 1배) 가정. 0·1안 돈은 전기료이고 1안 처음 1,600만원은 뺐습니다. 모두 추정 — 시험 생성 뒤 실제 값으로 바꿉니다.</p>
  </div>
 </section>
 
@@ -312,4 +325,19 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.fade').forEach(e=>io.observe(e));
 const secs=[...document.querySelectorAll('header[id],section[id]')],nl=document.querySelectorAll('nav a');
 addEventListener('scroll',()=>{let c=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<120)c=s.id});nl.forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+c))});
+
+// 해상도·길이 버튼
+(()=>{const P=[[0,'0안 회사 5060',25,0.11,'gen'],[1,'1안 구매',7.5,0.13,'gen'],[2,'2안 힉스필드',2.25,12.9,'api'],[3,'3안 대여',5,3.2,'gen']];
+const TF={gen:{480:.5,720:1,1080:1.15,'2k':1.35,'4k':1.7},api:{480:.7,720:.85,1080:1,'2k':1.2,'4k':1.45}};
+const CF={480:.6,720:.8,1080:1,'2k':1,'4k':1};
+let K='1080',Ln=1;
+const ht=h=>h<1?Math.round(h*60)+'분':h<48?(Math.round(h*10)/10)+'시간':(Math.round(h/24*10)/10)+'일 ('+Math.round(h)+'시간)';
+const mw=x=>x<1?Math.round(x*10000).toLocaleString()+'원':(Math.round(x*10)/10).toLocaleString()+'만원';
+function r(){let h='';for(const [i,n,t,c,ty] of P){let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
+ const hr=t*tf*Ln,won=(ty==='api'?c*CF[K]:c*tf)*Ln;
+ let nt=ty==='api'?(K==='2k'||K==='4k'?'1080p로 만들고 업스케일':'바로 만듦'):(K==='480'||K==='720'?'바로 만듦':'720p로 만들고 업스케일');
+ h+=`<tr><td><span class="dot" style="background:${C[i]}"></span><b>${n}</b></td><td><b>${ht(hr)}</b></td><td>${mw(won)}</td><td style="color:var(--sub)">${nt}</td></tr>`;}
+ document.getElementById('rt').innerHTML=h;}
+const bind=(id,f)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f(b);r();});
+bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);r();})();
 </script></body></html>
