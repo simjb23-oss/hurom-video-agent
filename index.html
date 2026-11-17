@@ -91,12 +91,14 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
   <div class="card plan fade">
    <div class="tag"><span class="dot" style="background:var(--a0)"></span>0안</div><h3>회사 RTX 5060 + ComfyUI</h3>
    <div class="tag">회사에 있는 PC로 Wan 2.2 5B(또는 14B 축소판)</div>
-   <div class="big">0.11<small>만원 / 영상 1분 · 전기료만</small></div>
+   <div class="big">0<small>원 / 영상 1분 · 전기료 뺌</small></div>
    <dl class="kv"><dt>1분 만드는 시간</dt><dd>20~30시간</dd><dt>첫 영상까지</dt><dd>3~5일</dd><dt>처음 드는 돈</dt><dd>0원</dd><dt>품질</dt><dd>중하 (480~720p)</dd></dl></div>
   <div class="card plan fade"><div class="tag"><span class="dot" style="background:var(--a1)"></span>1안</div><h3>그래픽카드 구매 + ComfyUI</h3>
-   <div class="tag">RTX 5090 PC를 사서 회사 안에서 돌림</div>
-   <div class="big">0.13<small>만원 / 영상 1분 · 처음 1,600만원</small></div>
-   <dl class="kv"><dt>1분 만드는 시간</dt><dd>6~9시간</dd><dt>첫 영상까지</dt><dd>4~6주</dd><dt>GPU 시세</dt><dd>1,119만원 (1월의 2배+)</dd><dt>품질</dt><dd>중</dd></dl></div>
+   <div class="tag">그래픽카드를 골라 보세요 (5090 대신 회사 돈 아끼는 3종)</div>
+   <div class="seg" id="gpu" style="margin:10px 0 2px;flex-wrap:wrap"><button data-g="0" class="on">5080</button><button data-g="1">5070 Ti</button><button data-g="2">5060 Ti</button></div>
+   <div class="big"><span id="g1p">450</span><small>만원 · 처음 PC 값</small></div>
+   <dl class="kv"><dt>그래픽카드</dt><dd id="g1n">RTX 5080 16GB</dd><dt>영상 1분</dt><dd>0원 (전기료 뺌)</dd><dt>카드 시세</dt><dd id="g1c">약 250만원</dd><dt>1분 만드는 시간</dt><dd id="g1t">10~14시간</dd><dt>첫 영상까지</dt><dd>2~4주</dd><dt>품질</dt><dd id="g1q">중 (14B 축소판)</dd></dl>
+   <p class="note" style="margin-top:8px">참고: RTX 5090(32GB)은 PC 약 1,600만원 · 1분 6~9시간</p></div>
   <div class="card plan fade"><div class="tag"><span class="dot" style="background:var(--a2)"></span>2안</div><h3>힉스필드</h3>
    <div class="tag">상용 최신 모델(Seedance 2.5 · Kling 4.0)을 골라 씀</div>
    <div class="big">12.9<small>만원 / 영상 1분</small></div>
@@ -134,7 +136,7 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
   </div>
   <div class="card"><svg id="cc" class="chart" viewBox="0 0 720 400"></svg>
    <div class="legend"><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#3d3d3a" stroke-width="2.8" stroke-dasharray="2 5" stroke-linecap="round"/></svg> 0안 회사 5060</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#1f6fe0" stroke-width="3.4"  stroke-linecap="round"/></svg> 1안 구매</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#f07a1a" stroke-width="2.8"  stroke-linecap="round"/></svg> 2안 힉스필드</span><span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#0e9f5f" stroke-width="2.8" stroke-dasharray="9 5" stroke-linecap="round"/></svg> 3안 대여</span></div>
-   <p class="note">가정(중간값, 완성 영상 1분 기준): 1안 처음 1,600만원 + 전기 0.13만원 + 월 관리 3만원 · 2안 12.9만원(생성 1초 0.2~0.57달러, 쓸 컷 하나에 4번 생성해 고름) · 3안 3.2만원(H100 시간당 2.7~4.4달러) + 월 저장 1.5만원 · 0안 전기료 0.11만원(PC 약 300W × 25시간), 밤에만 돌리면 한 달 약 10분이 한계(넘으면 선이 흐려짐), 5060 8GB 기준 추정. 환율 1,400원. 참고: 숏폼 15~30초 1편 ≈ 0.25~0.5분. 실제 크레딧 단가는 결제 후 시험 생성으로 확정합니다.</p></div>
+   <p class="note">가정(중간값, 완성 영상 1분 기준, 전기료는 모두 뺌): 1안 처음 PC 값(위 카드에서 고른 그래픽카드) + 월 관리 3만원 · 2안 12.9만원(생성 1초 0.2~0.57달러, 쓸 컷 하나에 4번 생성해 고름) · 3안 3.2만원(H100 시간당 2.7~4.4달러) + 월 저장 1.5만원 · 0안 0원, 밤에만 돌리면 한 달 약 10분이 한계(넘으면 선이 흐려짐), 5060 8GB 기준 추정. 환율 1,400원. 그래픽카드 시세는 추정이라 구매 전 다나와 최저가로 다시 확인합니다. 참고: 숏폼 15~30초 1편 ≈ 0.25~0.5분.</p></div>
  </div>
 </section>
 
@@ -147,7 +149,7 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
   <div style="font-size:13px;color:var(--sub);margin:14px 0 6px">완성 영상 길이</div>
   <div class="seg" id="ln"><button data-l="0.25">15초</button><button data-l="0.5">30초</button><button data-l="1" class="on">1분</button><button data-l="2">2분</button><button data-l="3">3분</button><button data-l="5">5분</button><button data-l="10">10분</button></div>
   <div class="tw" style="margin-top:18px"><table><thead><tr><th></th><th>만드는 시간</th><th>드는 돈</th><th>이 해상도는</th></tr></thead><tbody id="rt"></tbody></table></div>
-  <p class="note">계산: 위 「1분 만드는 시간 · 1분 단가」 중간값에 해상도 배수를 곱했습니다. 0·1·3안(Wan 2.2)은 720p로 만들고 1080p 이상은 업스케일로 올립니다(1080p +15% · 2K +35% · 4K +70%, 0안 8GB는 4K 업스케일이 느려 +120%). 480p는 720p의 약 0.5배. 2안(힉스필드)은 1080p까지 바로 만들고 2K·4K는 업스케일, 크레딧은 해상도별 단가(480p 0.6배 · 720p 0.8배 · 1080p 이상 1배) 가정. 0·1안 돈은 전기료이고 1안 처음 1,600만원은 뺐습니다. 모두 추정 — 시험 생성 뒤 실제 값으로 바꿉니다.</p>
+  <p class="note">계산: 위 「1분 만드는 시간 · 1분 단가」 중간값에 해상도 배수를 곱했습니다. 0·1·3안(Wan 2.2)은 720p로 만들고 1080p 이상은 업스케일로 올립니다(1080p +15% · 2K +35% · 4K +70%, 0안 8GB는 4K 업스케일이 느려 +120%). 480p는 720p의 약 0.5배. 2안(힉스필드)은 1080p까지 바로 만들고 2K·4K는 업스케일, 크레딧은 해상도별 단가(480p 0.6배 · 720p 0.8배 · 1080p 이상 1배) 가정. 0·1안은 전기료를 빼서 0원이고 1안 처음 PC 값은 뺐습니다. 1안 시간은 위 카드에서 고른 그래픽카드 기준입니다. 모두 추정 — 시험 생성 뒤 실제 값으로 바꿉니다.</p>
  </div>
 </section>
 
@@ -197,18 +199,18 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
  <p class="secsub">비용·시간·품질·쓰기 쉬움·보안·위험을 한 표에. 아래는 안마다 우리한테 좋은 점 3개와 약한 점 2개입니다.</p>
  <div class="tw"><table>
   <tr><th></th><th><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</th><th><span class="dot" style="background:var(--a1)"></span>1안 구매</th><th><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</th><th><span class="dot" style="background:var(--a3)"></span>3안 대여</th></tr>
-  <tr><td><b>처음 드는 돈</b></td><td>0원</td><td>약 1,500~1,700만원<br><span style="color:var(--mute);font-size:12px">RTX 5090 1,119만원 + 본체 400~600만원 추정</span></td><td>0원 (월 $49~129)</td><td>0원</td></tr>
-  <tr><td><b>완성 영상 1초</b></td><td>약 18원 (전기료)</td><td>약 22원 (전기료)</td><td>1,120~3,190원 (중간 2,160원)</td><td>350~700원 (중간 530원)</td></tr><tr><td><b>완성 영상 1분</b></td><td>약 0.11만원</td><td>약 0.13만원</td><td>6.7~19.2만원 (중간 12.9만원)</td><td>2.1~4.2만원 (중간 3.2만원)</td></tr>
-  <tr><td><b>1분 만드는 시간</b></td><td>20~30시간 (밤새 돌림)</td><td>6~9시간</td><td>1.5~3시간</td><td>4~6시간</td></tr>
-  <tr><td><b>첫 영상까지</b></td><td>3~5일 (설치·시험)</td><td>4~6주 (품의·구매·조립 + 설치)</td><td>1~2일</td><td>1~2주</td></tr>
+  <tr><td><b>처음 드는 돈</b></td><td>0원</td><td>약 <span class="g1p">450</span>만원<br><span style="color:var(--mute);font-size:12px"><span class="g1n">RTX 5080 16GB</span> 카드 + 본체 약 200만원 추정</span></td><td>0원 (월 $49~129)</td><td>0원</td></tr>
+  <tr><td><b>완성 영상 1초</b></td><td>0원 (전기료 뺌)</td><td>0원 (전기료 뺌)</td><td>1,120~3,190원 (중간 2,160원)</td><td>350~700원 (중간 530원)</td></tr><tr><td><b>완성 영상 1분</b></td><td>0원</td><td>0원</td><td>6.7~19.2만원 (중간 12.9만원)</td><td>2.1~4.2만원 (중간 3.2만원)</td></tr>
+  <tr><td><b>1분 만드는 시간</b></td><td>20~30시간 (밤새 돌림)</td><td><span class="g1t">10~14시간</span></td><td>1.5~3시간</td><td>4~6시간</td></tr>
+  <tr><td><b>첫 영상까지</b></td><td>3~5일 (설치·시험)</td><td>2~4주 (품의·구매·조립 + 설치)</td><td>1~2일</td><td>1~2주</td></tr>
   <tr><td><b>품질 상한</b></td><td>중하 (작은 모델 · 480~720p → 업스케일)</td><td>중 (오픈 모델)</td><td>최상 (상용 최신)</td><td>중 (1안과 같음)</td></tr>
   <tr><td><b>영업팀 쓰기</b></td><td>에이전트를 통해서만</td><td>에이전트를 통해서만</td><td>쉬움 — 웹 직접 + 에이전트</td><td>에이전트를 통해서만</td></tr>
   <tr><td><b>보안</b></td><td>회사 PC 안에서 끝남</td><td>회사 PC 안에서 끝남</td><td>제품 사진 외부 업로드</td><td>외부 GPU(쓰고 지움)</td></tr>
   <tr><td><b>위험</b></td><td>느림 · 그 PC를 오래 점유 · 메모리 8GB면 14B 어려움</td><td>시세 고점 · 고장·발열 · 모델 세대 교체</td><td>요금·크레딧 정책 변경</td><td>대여 가격 인상(9월 이력) · 켜고 끄기</td></tr>
  </table></div>
  <div class="cards c4" style="margin-top:18px">
-  <div class="card"><b><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>돈이 안 듦 (전기료만)</li><li>제품 사진이 회사 밖으로 안 나감</li><li>같은 ComfyUI라 나중에 대여·구매로 그대로 옮김</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>매우 느림 — 한 달 약 10분 분량이 한계(밤에만 돌릴 때)</li><li>제품 전용 학습(LoRA)은 메모리 부족으로 어려움</li></ul></div></div></div>
-  <div class="card"><b><span class="dot" style="background:var(--a1)"></span>1안 구매</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>많이 만들수록 1분당 비용이 0원에 가까움</li><li>미공개 신제품 사진이 밖으로 안 나감</li><li>제품 전용 학습(LoRA) 마음껏 반복</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>처음 1,600만원 · 시세 고점</li><li>품질 상한 낮음, 고장·업데이트 직접</li></ul></div></div></div>
+  <div class="card"><b><span class="dot" style="background:var(--a0)"></span>0안 회사 5060</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>돈이 안 듦</li><li>제품 사진이 회사 밖으로 안 나감</li><li>같은 ComfyUI라 나중에 대여·구매로 그대로 옮김</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>매우 느림 — 한 달 약 10분 분량이 한계(밤에만 돌릴 때)</li><li>제품 전용 학습(LoRA)은 메모리 부족으로 어려움</li></ul></div></div></div>
+  <div class="card"><b><span class="dot" style="background:var(--a1)"></span>1안 구매</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>많이 만들수록 1분당 비용이 0원에 가까움</li><li>미공개 신제품 사진이 밖으로 안 나감</li><li>제품 전용 학습(LoRA) 마음껏 반복</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>처음 PC 값 · 그래픽카드 시세 고점</li><li>품질 상한 낮음, 고장·업데이트 직접</li></ul></div></div></div>
   <div class="card"><b><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>최고 품질 모델을 한 계정에서</li><li>영업팀이 웹에서 직접 · 광고 템플릿</li><li>오늘 시작, 새 모델 자동 추가</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>1분당 비용 가장 비쌈</li><li>사진 외부 업로드 · 요금 변경 위험</li></ul></div></div></div>
   <div class="card"><b><span class="dot" style="background:var(--a3)"></span>3안 대여</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>1분당 비용 구독형보다 쌈</li><li>1안과 같은 환경을 큰돈 없이 시험</li><li>필요할 때만 H100으로 빠르게</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>품질 상한은 1안과 같음</li><li>서버 켜고 끄기 관리 필요</li></ul></div></div></div>
  </div>
@@ -250,8 +252,9 @@ RunPod 가격 — <a href="https://www.runpod.io/gpu-cloud/pricing">runpod.io</a
 <script>
 const C={0:'#3d3d3a',1:'#1f6fe0',2:'#f07a1a',3:'#0e9f5f'};const DASH={0:'2 5',1:'',2:'',3:'9 5'};const CAP0=10;
 let V=10,M=12;
-const f0=(v,m)=>0.11*v*m, f1=(v,m)=>1600+0.13*v*m+3*m, f2=(v,m)=>12.9*v*m, f3=(v,m)=>3.2*v*m+1.5*m;
-const won=x=>x>=10000?(x/10000).toFixed(x>=100000?0:1)+'억':Math.round(x).toLocaleString()+'만';
+let P1=450,H1=12;const GP=[["RTX 5080 16GB",250,450,"10~14시간",12,"중 (14B 축소판)"],["RTX 5070 Ti 16GB",180,370,"12~16시간",14,"중 (14B 축소판)"],["RTX 5060 Ti 16GB",100,280,"17~23시간",20,"중하~중 (5B · 14B 축소판)"]];
+const f0=(v,m)=>0, f1=(v,m)=>P1+3*m, f2=(v,m)=>12.9*v*m, f3=(v,m)=>3.2*v*m+1.5*m;
+const won=x=>x===0?'0':x>=10000?(x/10000).toFixed(x>=100000?0:1)+'억':Math.round(x).toLocaleString()+'만';
 function draw(){
  document.getElementById('v').textContent=V;
  const s=document.getElementById('cc'),W=720,H=400,L=64,R=124,T=20,B=40;
@@ -271,7 +274,7 @@ function draw(){
  const lb=lines.map(([k,f])=>({k,v:f(V,M),y:y(f(V,M))+4})).sort((p,q)=>p.y-q.y);
  for(let i=1;i<lb.length;i++) if(lb[i].y-lb[i-1].y<17) lb[i].y=lb[i-1].y+17;
  lb.forEach(l=>g+=`<text x="${x(M)+8}" y="${l.y}" font-size="12" font-weight="700" fill="${C[l.k]}">${l.k}안 ${won(l.v)}원</text>`);
- const b12=1600/((12.9-0.13)*V-3), b13=1600/(3.07*V-1.5);
+ const b12=P1/(12.9*V-3), b13=P1/(3.2*V-1.5);
  for(const [b,f,lab] of [[b12,f2,'1안=2안'],[b13,f3,'1안=3안']]) if(b>0&&b<=M){
   g+=`<line x1="${x(b)}" x2="${x(b)}" y1="${T}" y2="${H-B}" stroke="#0b0b0b" stroke-dasharray="3 4" opacity=".35"/><circle cx="${x(b)}" cy="${y(f(V,b))}" r="5.5" fill="#fff" stroke="#0b0b0b" stroke-width="2"/><text x="${x(b)+8}" y="${y(f(V,b))-10}" font-size="12" font-weight="700">${lab} · ${b.toFixed(1)}개월</text>`;}
  s.innerHTML=g;
@@ -281,7 +284,7 @@ function draw(){
  document.getElementById('tots').innerHTML=`<div style="font-size:13px;color:var(--sub)">${M}개월 누적</div>`+t.map(([k,n,c])=>`<div class="tot"><span><span class="dot" style="background:${C[k]}"></span>${n}${c===min?' <span class="chk done">가장 쌈</span>':''}${k===0&&over?' <span class="chk wait">한 달 약 '+CAP0+'분 넘음</span>':''}</span><b>${won(c)}원</b></div>`).join('');
  const be=document.getElementById('be');
  const fm=b=>b>0&&isFinite(b)?(b<=120?b.toFixed(1)+'개월':'10년 넘게'):'안 남';
- be.innerHTML=`<b>그래픽카드를 사는 안(1안)의 본전</b><br>2안보다 싸지는 때: <b>${fm(b12)}</b> · 3안보다 싸지는 때: <b>${fm(b13)}</b><br><span style="color:var(--sub);font-size:13px">${b12<=12?'1년 안에 2안 대비 본전이 납니다.':'1년 안에는 본전이 안 납니다.'} 1안이 3안보다 1년 안에 싸지려면 한 달에 영상 약 ${Math.ceil((1600/12+1.5)/3.07)}분이 필요합니다.</span>`;
+ be.innerHTML=`<b>그래픽카드를 사는 안(1안)의 본전</b><br>2안보다 싸지는 때: <b>${fm(b12)}</b> · 3안보다 싸지는 때: <b>${fm(b13)}</b><br><span style="color:var(--sub);font-size:13px">${b12<=12?'1년 안에 2안 대비 본전이 납니다.':'1년 안에는 본전이 안 납니다.'} 1안이 3안보다 1년 안에 싸지려면 한 달에 영상 약 ${Math.ceil((P1/12+4.5)/3.2)}분이 필요합니다.</span>`;
 }
 const r=document.getElementById('r');
 r.oninput=()=>{V=+r.value;document.querySelectorAll('#pre button').forEach(b=>b.classList.toggle('on',+b.dataset.v===V));draw()};
@@ -326,18 +329,23 @@ document.querySelectorAll('.fade').forEach(e=>io.observe(e));
 const secs=[...document.querySelectorAll('header[id],section[id]')],nl=document.querySelectorAll('nav a');
 addEventListener('scroll',()=>{let c=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<120)c=s.id});nl.forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+c))});
 
+document.querySelectorAll('#gpu button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#gpu button').forEach(x=>x.classList.toggle('on',x===b));const g=GP[+b.dataset.g];P1=g[2];H1=g[4];
+ document.getElementById('g1p').textContent=g[2];document.getElementById('g1n').textContent=g[0];document.getElementById('g1c').textContent='약 '+g[1]+'만원';document.getElementById('g1t').textContent=g[3];document.getElementById('g1q').textContent=g[5];
+ document.querySelectorAll('.g1p').forEach(e=>e.textContent=g[2]);document.querySelectorAll('.g1n').forEach(e=>e.textContent=g[0]);document.querySelectorAll('.g1t').forEach(e=>e.textContent=g[3]);
+ draw();if(window.rRes)rRes();});
+
 // 해상도·길이 버튼
-(()=>{const P=[[0,'0안 회사 5060',25,0.11,'gen'],[1,'1안 구매',7.5,0.13,'gen'],[2,'2안 힉스필드',2.25,12.9,'api'],[3,'3안 대여',5,3.2,'gen']];
+(()=>{const P=[[0,'0안 회사 5060',25,0,'gen'],[1,'1안 구매',0,0,'gen'],[2,'2안 힉스필드',2.25,12.9,'api'],[3,'3안 대여',5,3.2,'gen']];
 const TF={gen:{480:.5,720:1,1080:1.15,'2k':1.35,'4k':1.7},api:{480:.7,720:.85,1080:1,'2k':1.2,'4k':1.45}};
 const CF={480:.6,720:.8,1080:1,'2k':1,'4k':1};
 let K='1080',Ln=1;
 const ht=h=>h<1?Math.round(h*60)+'분':h<48?(Math.round(h*10)/10)+'시간':(Math.round(h/24*10)/10)+'일 ('+Math.round(h)+'시간)';
-const mw=x=>x<1?Math.round(x*10000).toLocaleString()+'원':(Math.round(x*10)/10).toLocaleString()+'만원';
-function r(){let h='';for(const [i,n,t,c,ty] of P){let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
+const mw=x=>x===0?'0원':x<1?Math.round(x*10000).toLocaleString()+'원':(Math.round(x*10)/10).toLocaleString()+'만원';
+function r(){let h='';for(let [i,n,t,c,ty] of P){if(i===1)t=H1;let tf=TF[ty][K];if(i===0&&K==='4k')tf=2.2;
  const hr=t*tf*Ln,won=(ty==='api'?c*CF[K]:c*tf)*Ln;
  let nt=ty==='api'?(K==='2k'||K==='4k'?'1080p로 만들고 업스케일':'바로 만듦'):(K==='480'||K==='720'?'바로 만듦':'720p로 만들고 업스케일');
  h+=`<tr><td><span class="dot" style="background:${C[i]}"></span><b>${n}</b></td><td><b>${ht(hr)}</b></td><td>${mw(won)}</td><td style="color:var(--sub)">${nt}</td></tr>`;}
  document.getElementById('rt').innerHTML=h;}
 const bind=(id,f)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f(b);r();});
-bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);r();})();
+bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);window.rRes=r;r();})();
 </script></body></html>
