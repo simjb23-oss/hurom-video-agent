@@ -76,6 +76,22 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
 .fade{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}.fade.in{opacity:1;transform:none}
 @media(max-width:1000px){.cards.c4{grid-template-columns:repeat(2,1fr)}}@media(max-width:860px){.cards.c4,.cards{gap:24px}.cards,.status,.calc,.radar,.tl,.pc{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
 @media print{nav{display:none}.fade{opacity:1;transform:none}section{break-inside:avoid}}
+
+/* plan cards v2 */
+@media(max-width:640px){.cards.c4{grid-template-columns:minmax(0,1fr)}}
+p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
+.plan{min-width:0;display:flex;flex-direction:column;border-top:4px solid var(--pc);padding:20px 20px 22px}
+.plan h3{margin:6px 0 0;font-size:21px;line-height:1.3;letter-spacing:-.01em}
+.plan .tool{align-self:flex-start;margin-top:6px;font-size:12px;font-weight:600;color:var(--pc);background:color-mix(in srgb,var(--pc) 10%,#fff);padding:2px 9px;border-radius:99px}
+.plan .desc{font-size:13px;line-height:1.55;color:var(--sub);margin:10px 0 0;min-height:40px}
+.plan .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;width:100%;border-radius:12px;margin:12px 0 0;align-items:stretch}
+.plan .seg button{border-radius:9px;padding:6px 4px;min-height:46px;font-size:12.5px;line-height:1.25;font-weight:600}
+.plan .seg.one{grid-template-columns:1fr}.plan .seg.one button{cursor:default}
+.plan .big{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);line-height:1.15}
+.plan .big small{display:block;margin-top:4px;font-size:13px}
+.plan .kv{grid-template-columns:auto minmax(0,1fr);gap:7px 12px;font-size:13.5px;line-height:1.45}.plan .kv dt{white-space:nowrap}
+.plan .note{margin-top:auto;padding-top:12px;font-size:12px}
+.plan .badge{background:var(--pc);top:-13px;left:18px}
 </style></head><body>
 <nav><div class="wrap">
 <a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#res">해상도·길이</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">안별 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
@@ -88,25 +104,26 @@ footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(-
  <p class="lead">완성 영상 <b>1분(=60초)</b>을 만드는 데 드는 돈과 시간으로 네 가지 방법을 비교했습니다. 판단은 아래 숫자와 비교 시험 결과로 하시면 됩니다.</p>
 
  <div class="cards c4" style="margin-top:30px">
-  <div class="card plan fade">
-   <div class="tag"><span class="dot" style="background:var(--a0)"></span>0안</div><h3>회사 RTX 5060 + ComfyUI</h3>
-   <div class="tag">회사에 있는 PC로 Wan 2.2 5B(또는 14B 축소판)</div>
+  <div class="card plan fade" style="--pc:var(--a0)">
+   <div class="tag"><span class="dot" style="background:var(--a0)"></span>0안</div><h3>회사 RTX 5060</h3><span class="tool">ComfyUI · 회사 PC</span>
+   <p class="desc">회사에 있는 PC로 Wan 2.2 5B(또는 14B 축소판)를 돌립니다.</p>
+   <div class="seg one"><button class="on" tabindex="-1">RTX 5060 (보유)</button></div>
    <div class="big">0<small>원 / 영상 1분</small></div>
    <dl class="kv"><dt>1분 순수 생성</dt><dd>3~6시간</dd><dt>첫 영상까지</dt><dd>3~5일</dd><dt>처음 드는 돈</dt><dd>0원</dd><dt>품질</dt><dd>중하 (480~720p)</dd></dl></div>
-  <div class="card plan fade"><div class="tag"><span class="dot" style="background:var(--a1)"></span>1안</div><h3>그래픽카드 구매 + ComfyUI</h3>
-   <div class="tag">그래픽카드를 골라 보세요 (5090 대신 회사 돈 아끼는 3종)</div>
-   <div class="seg" id="gpu" style="margin:10px 0 2px;flex-wrap:wrap"><button data-g="0" class="on">5080</button><button data-g="1">5070 Ti</button><button data-g="2">5060 Ti</button></div>
+  <div class="card plan fade" style="--pc:var(--a1)"><div class="tag"><span class="dot" style="background:var(--a1)"></span>1안</div><h3>그래픽카드 구매</h3><span class="tool">ComfyUI · 새 PC</span>
+   <p class="desc">5090 대신 회사 돈을 아끼는 그래픽카드 3종 중에서 고릅니다.</p>
+   <div class="seg" id="gpu"><button data-g="0" class="on">5080</button><button data-g="1">5070 Ti</button><button data-g="2">5060 Ti</button></div>
    <div class="big"><span id="g1p">450</span><small>만원 · 처음 PC 값</small></div>
    <dl class="kv"><dt>그래픽카드</dt><dd id="g1n">RTX 5080 16GB</dd><dt>영상 1분</dt><dd>0원</dd><dt>카드 시세</dt><dd id="g1c">약 250만원</dd><dt>1분 순수 생성</dt><dd id="g1t">1.2~2시간</dd><dt>첫 영상까지</dt><dd>2~4주</dd><dt>품질</dt><dd id="g1q">중 (14B 축소판)</dd></dl>
-   <p class="note" style="margin-top:8px">참고: RTX 5090(32GB)은 PC 약 1,600만원 · 1분 순수 생성 1~1.5시간</p></div>
-  <div class="card plan fade"><div class="tag"><span class="dot" style="background:var(--a2)"></span>2안</div><h3>힉스필드</h3>
-   <div class="tag">힉스필드에서 바로 쓰는 유명 모델 3개 (MCP로 에이전트가 직접 호출)</div>
-   <div class="seg" id="m2" style="margin:10px 0 2px;flex-wrap:wrap"><button data-i="0" class="on">Kling 3.0</button><button data-i="1">Seedance 2.5</button><button data-i="2">Cinema Studio 3.0</button></div>
+   <p class="note">참고: RTX 5090(32GB)은 PC 약 1,600만원 · 1분 순수 생성 1~1.5시간</p></div>
+  <div class="card plan fade" style="--pc:var(--a2)"><div class="tag"><span class="dot" style="background:var(--a2)"></span>2안</div><h3>힉스필드</h3><span class="tool">구독 · MCP로 에이전트가 호출</span>
+   <p class="desc">힉스필드에서 바로 쓰는 유명 모델 3개 중에서 고릅니다.</p>
+   <div class="seg" id="m2"><button data-i="0" class="on">Kling 3.0</button><button data-i="1">Seedance 2.5</button><button data-i="2">Cinema Studio 3.0</button></div>
    <div class="big">12.9<small>만원 / 영상 1분</small></div>
    <dl class="kv"><dt>1분 순수 생성</dt><dd id="m2t">18~30분</dd><dt>한 번 최대</dt><dd id="m2l">15초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷 · 소리 맞춤 · 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
-  <div class="card plan fade"><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여 + ComfyUI</h3>
-   <div class="tag">빌린 GPU(H100)에서 돌릴 오픈 모델을 골라 보세요</div>
-   <div class="seg" id="m3" style="margin:10px 0 2px;flex-wrap:wrap"><button data-i="0" class="on">Wan 2.2</button><button data-i="1">LTX-2.3</button><button data-i="2">MiniMax H3</button></div>
+  <div class="card plan fade" style="--pc:var(--a3)"><span class="badge">준보 님 제안 · 2주 시험 후 검토</span><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
+   <p class="desc">빌린 GPU에서 돌릴 오픈 모델 3개 중에서 고릅니다.</p>
+   <div class="seg" id="m3"><button data-i="0" class="on">Wan 2.2</button><button data-i="1">LTX-2.3</button><button data-i="2">MiniMax H3</button></div>
    <div class="big">3.2<small>만원 / 영상 1분</small></div>
    <dl class="kv"><dt>1분 순수 생성</dt><dd id="m3t">40분~1시간</dd><dt>품질</dt><dd id="m3q">중</dd><dt>라이선스</dt><dd id="m3c">상업 사용 무료</dd><dt>제품 학습(LoRA)</dt><dd id="m3o">됨</dd><dt>첫 영상까지</dt><dd>1~2주</dd></dl></div>
  </div>
