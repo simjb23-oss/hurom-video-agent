@@ -103,6 +103,11 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
 .bar b{white-space:nowrap;font-size:15px}.rrow .won{text-align:right;font-weight:600;white-space:nowrap}
 .why{margin-top:6px;font-size:12.5px;color:var(--mute)}.why summary{cursor:pointer;color:var(--sub);font-weight:600}.why ul{margin:8px 0 0;padding-left:18px}.why li{margin:3px 0}
 @media(max-width:640px){.pick>div{width:100%}.pick .seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);width:100%}.pick .seg button{padding:6px 0}.rrow{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.rrow .bar{grid-column:1/-1;order:3}.rrow.hd{display:none}}
+
+/* base length bar */
+.basebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:26px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.basebar .lab{font-size:13px;font-weight:700}.basebar .hint{font-size:12.5px;color:var(--mute)}
+.basebar .seg button{padding:7px 18px;font-weight:600}
 </style></head><body>
 <nav><div class="wrap">
 <a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#res">해상도·길이</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">안별 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
@@ -112,31 +117,32 @@ p,li,dd,.tag{text-wrap:pretty}h1,h2,h3,h4{text-wrap:balance}
 <header id="sum">
  <div class="eyebrow">국내영업 판매용 영상 · 기획서 v1.4 · 2026-11-17 · 작성 PC-김호철 · 요청 강응찬 팀장님 → 심준보 님</div>
  <h1>판매 영상 만드는 방법 4가지<br><span style="color:var(--sub)">비용 · 시간 · 품질 비교</span></h1>
- <p class="lead">완성 영상 <b>1분(=60초)</b>을 만드는 데 드는 돈과 시간으로 네 가지 방법을 비교했습니다. 판단은 아래 숫자와 비교 시험 결과로 하시면 됩니다.</p>
+ <p class="lead">완성 영상 <b class="bl">30초</b> 기준으로, 만드는 데 드는 돈과 시간으로 네 가지 방법을 비교했습니다. 판단은 아래 숫자와 비교 시험 결과로 하시면 됩니다.</p>
 
+ <div class="basebar"><span class="lab">완성 영상 길이 기준</span><div class="seg" id="base"><button data-f="0.3333">20초</button><button data-f="0.5" class="on">30초</button><button data-f="1">1분</button></div><span class="hint">누르면 아래 네 카드의 순수 생성 시간과 돈이 이 길이 기준으로 바뀝니다.</span></div>
  <div class="cards c4" style="margin-top:30px">
   <div class="card plan fade" style="--pc:var(--a0)">
    <div class="tag"><span class="dot" style="background:var(--a0)"></span>0안</div><h3>회사 RTX 5060</h3><span class="tool">ComfyUI · 회사 PC</span>
    <p class="desc">회사에 있는 PC로 Wan 2.2 5B(또는 14B 축소판)를 돌립니다.</p>
    <div class="seg one"><button class="on" tabindex="-1">RTX 5060 (보유)</button></div>
-   <div class="big">0<small>원 / 영상 1분</small></div>
-   <dl class="kv"><dt>1분 순수 생성</dt><dd>3~6시간</dd><dt>첫 영상까지</dt><dd>3~5일</dd><dt>처음 드는 돈</dt><dd>0원</dd><dt>품질</dt><dd>중하 (480~720p)</dd></dl></div>
+   <div class="big">0<small>원 / 영상 <span class="bl">1분</span></small></div>
+   <dl class="kv"><dt><span class="bl">1분</span> 순수 생성</dt><dd class="sc">3~6시간</dd><dt>첫 영상까지</dt><dd>3~5일</dd><dt>처음 드는 돈</dt><dd>0원</dd><dt>품질</dt><dd>중하 (480~720p)</dd></dl></div>
   <div class="card plan fade" style="--pc:var(--a1)"><div class="tag"><span class="dot" style="background:var(--a1)"></span>1안</div><h3>그래픽카드 구매</h3><span class="tool">ComfyUI · 새 PC</span>
    <p class="desc">5090 대신 회사 돈을 아끼는 그래픽카드 3종 중에서 고릅니다.</p>
    <div class="seg" id="gpu"><button data-g="0" class="on">5080</button><button data-g="1">5070 Ti</button><button data-g="2">5060 Ti</button></div>
    <div class="big"><span id="g1p">450</span><small>만원 · 처음 PC 값</small></div>
-   <dl class="kv"><dt>그래픽카드</dt><dd id="g1n">RTX 5080 16GB</dd><dt>영상 1분</dt><dd>0원</dd><dt>카드 시세</dt><dd id="g1c">약 250만원</dd><dt>1분 순수 생성</dt><dd id="g1t">1.2~2시간</dd><dt>첫 영상까지</dt><dd>2~4주</dd><dt>품질</dt><dd id="g1q">중 (14B 축소판)</dd></dl>
-   <p class="note">참고: RTX 5090(32GB)은 PC 약 1,600만원 · 1분 순수 생성 1~1.5시간</p></div>
+   <dl class="kv"><dt>그래픽카드</dt><dd id="g1n">RTX 5080 16GB</dd><dt>영상 <span class="bl">1분</span></dt><dd>0원</dd><dt>카드 시세</dt><dd id="g1c">약 250만원</dd><dt><span class="bl">1분</span> 순수 생성</dt><dd class="sc" id="g1t">1.2~2시간</dd><dt>첫 영상까지</dt><dd>2~4주</dd><dt>품질</dt><dd id="g1q">중 (14B 축소판)</dd></dl>
+   <p class="note">참고: RTX 5090(32GB)은 PC 약 1,600만원 · <span class="bl">1분</span> 순수 생성 <span class="sc">1~1.5시간</span></p></div>
   <div class="card plan fade" style="--pc:var(--a2)"><div class="tag"><span class="dot" style="background:var(--a2)"></span>2안</div><h3>힉스필드</h3><span class="tool">구독 · MCP로 에이전트가 호출</span>
    <p class="desc">힉스필드에서 바로 쓰는 유명 모델 3개 중에서 고릅니다.</p>
    <div class="seg" id="m2"><button data-i="0" class="on">Kling 3.0</button><button data-i="1">Seedance 2.5</button><button data-i="2">Cinema Studio 3.0</button></div>
-   <div class="big">12.9<small>만원 / 영상 1분</small></div>
-   <dl class="kv"><dt>1분 순수 생성</dt><dd id="m2t">6~10분</dd><dt>한 번 최대</dt><dd id="m2l">30초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷 · 소리 맞춤 · 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
+   <div class="big"><span class="sw">12.9</span><small>만원 / 영상 <span class="bl">1분</span></small></div>
+   <dl class="kv"><dt><span class="bl">1분</span> 순수 생성</dt><dd class="sc" id="m2t">6~10분</dd><dt>한 번 최대</dt><dd id="m2l">30초</dd><dt>해상도</dt><dd id="m2r">720p · 1080p · 4K</dd><dt>잘하는 것</dt><dd id="m2f">여러 컷&nbsp;· 소리 맞춤&nbsp;· 동작</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd></dl></div>
   <div class="card plan fade" style="--pc:var(--a3)"><span class="badge">준보 님 제안 · 1주 시험 후 검토</span><div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여</h3><span class="tool">ComfyUI · 빌린 H100</span>
    <p class="desc">빌린 GPU에서 돌릴 오픈 모델 3개 중에서 고릅니다.</p>
    <div class="seg" id="m3"><button data-i="0" class="on">Wan 2.2</button><button data-i="1">LTX-2.3</button><button data-i="2">MiniMax H3</button></div>
-   <div class="big">3.2<small>만원 / 영상 1분</small></div>
-   <dl class="kv"><dt>1분 순수 생성</dt><dd id="m3t">40분~1시간</dd><dt>품질</dt><dd id="m3q">중</dd><dt>라이선스</dt><dd id="m3c">상업 사용 무료</dd><dt>제품 학습(LoRA)</dt><dd id="m3o">됨</dd><dt>첫 영상까지</dt><dd>1~2주</dd></dl></div>
+   <div class="big"><span class="sw">3.2</span><small>만원 / 영상 <span class="bl">1분</span></small></div>
+   <dl class="kv"><dt><span class="bl">1분</span> 순수 생성</dt><dd class="sc" id="m3t">40분~1시간</dd><dt>품질</dt><dd id="m3q">중</dd><dt>라이선스</dt><dd id="m3c">상업 사용 무료</dd><dt>제품 학습(LoRA)</dt><dd id="m3o">됨</dd><dt>첫 영상까지</dt><dd>1~2주</dd></dl></div>
  </div>
 
  <div class="status">
@@ -369,7 +375,7 @@ document.querySelectorAll('#gpu button').forEach(b=>b.onclick=()=>{document.quer
  document.querySelectorAll('.g1p').forEach(e=>e.textContent=g[2]);document.querySelectorAll('.g1n').forEach(e=>e.textContent=g[0]);document.querySelectorAll('.g1t').forEach(e=>e.textContent=g[3]);
  draw();if(window.rRes)rRes();});
 
-const M2=[["Kling 3.0","6~10분",0.13,"30초","720p · 1080p · 4K","여러 컷 · 소리 맞춤 · 동작"],["Seedance 2.5","15~30분",0.4,"30초","480p~4K","사진 여러 장 참고 · 영상 이어 붙이기"],["Cinema Studio 3.0","20~40분",0.5,"15초","480p~4K","영화 같은 화면 · 최고 화질"]];
+const M2=[["Kling 3.0","6~10분",0.13,"30초","720p · 1080p · 4K","여러 컷 · 소리 맞춤 · 동작"],["Seedance 2.5","15~30분",0.4,"30초","480p~4K","사진 여러 장 참고 · 영상 이어 붙이기"],["Cinema Studio 3.0","20~40분",0.5,"15초","480p~4K","영화 같은 화면 · 최고 화질"]];
 const M3=[["Wan 2.2","40분~1시간",0.8,"중","상업 사용 무료","됨"],["LTX-2.3","10~20분",0.25,"중","연매출 1천만$↑ 유료","됨"],["MiniMax H3","1~1.5시간",1.2,"상 (오픈 모델 1등)","한국 금지 → 허락 받아야","확인 못 함"]];
 function seg(id,f){document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));f(+b.dataset.i);if(window.rRes)rRes();});}
 const st=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
@@ -393,4 +399,17 @@ function r(){const rows=[];for(let [i,n,t,c,ty] of P){let sub='';if(i===1){t=H1;
  document.getElementById('rt').innerHTML=h;}
 const bind=(id,f)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f(b);r();});
 bind('rs',b=>K=b.dataset.k);bind('ln',b=>Ln=+b.dataset.l);window.rRes=r;r();})();
+
+// 완성 영상 길이 기준 바(20초·30초·1분)
+(()=>{let F=0.5;const BL={0.3333:'20초',0.5:'30초',1:'1분'};
+const toM=t=>{const m=t.match(/([\d.]+)\s*(분|시간)?/);return m?{v:+m[1],u:m[2]}:null};
+function rng(t){const [a,b]=t.split('~');const B=toM(b||a),A=toM(a);if(!A||!B)return null;if(!A.u)A.u=B.u;const mm=x=>x.u==='시간'?x.v*60:x.v;return [mm(A),mm(B)]}
+const fm=m=>(m=Math.round(m))<60?{v:Math.max(1,Math.round(m)),u:'분'}:{v:Math.round(m/6)/10,u:'시간'};
+function sc(t){const r=rng(t);if(!r)return t;const a=fm(r[0]*F),b=fm(r[1]*F);if(r[0]===r[1])return a.v+a.u;return a.u===b.u?(a.v===b.v?a.v+a.u:a.v+'~'+b.v+b.u):a.v+a.u+'~'+b.v+b.u}
+const won=v=>{const x=v*F;return x>=1?(Math.round(x*10)/10)+'':(Math.round(x*10)/10)+''};
+function ap(){document.querySelectorAll('#sum .sc').forEach(e=>{if(e.dataset.d!==e.textContent)e.dataset.raw=e.textContent;const t=sc(e.dataset.raw);e.textContent=t;e.dataset.d=t;});
+ document.querySelectorAll('#sum .sw').forEach(e=>{if(!e.dataset.raw)e.dataset.raw=e.textContent;e.textContent=won(+e.dataset.raw)});
+ document.querySelectorAll('#sum .bl').forEach(e=>e.textContent=BL[F]);}
+document.querySelectorAll('#base button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#base button').forEach(x=>x.classList.toggle('on',x===b));F=+b.dataset.f;ap();});
+document.addEventListener('click',e=>{if(e.target.closest('#sum .plan .seg'))ap();});ap();})();
 </script></body></html>
