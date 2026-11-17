@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>휴롬 영상 에이전트 기획서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#0b0b0b;--sub:#52514e;--mute:#8a8984;--line:#e6e4df;--a1:#2a78d6;--a2:#eb6834;--a3:#1baf7a;--warn:#c4442b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Pretendard,"맑은 고딕",system-ui,sans-serif;word-break:keep-all}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:rgba(246,245,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:10px 20px;white-space:nowrap}
+nav a{color:var(--sub);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:99px}
+nav a:hover,nav a.on{background:var(--ink);color:#fff}
+header{padding:48px 0 24px}
+.eyebrow{font-size:13px;color:var(--sub);letter-spacing:.02em}
+h1{font-size:clamp(28px,4.4vw,44px);line-height:1.2;margin:8px 0 14px;letter-spacing:-.02em}
+h2{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
+.lead{font-size:17px;color:var(--sub);max-width:760px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+.secsub{color:var(--sub);margin:0 0 22px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative}
+.plan{transition:transform .2s,box-shadow .2s}.plan:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.plan.best{border:2px solid var(--a2)}
+.badge{position:absolute;top:-12px;left:20px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;color:#fff}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.plan h3{margin:4px 0 2px;font-size:19px}.plan .tag{font-size:13px;color:var(--sub)}
+.big{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:14px 0 0}.big small{font-size:14px;font-weight:500;color:var(--sub)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:14px 0 0;font-size:14px}.kv dt{color:var(--mute)}.kv dd{margin:0;font-weight:600}
+.verdict{margin-top:16px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.status{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:22px}
+.todo li{margin:6px 0}.todo{padding-left:18px;margin:8px 0 0}
+.chk{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:6px}
+.done{background:#e3f5ec;color:#11734f}.wait{background:#fdecdf;color:#a3461b}
+/* calculator */
+.calc{display:grid;grid-template-columns:300px 1fr;gap:20px}
+.seg{display:inline-flex;background:#ecebe7;border-radius:99px;padding:3px}
+.seg button{border:0;background:none;font:inherit;font-size:13px;padding:6px 13px;border-radius:99px;cursor:pointer;color:var(--sub)}
+.seg button.on{background:var(--ink);color:#fff}
+input[type=range]{width:100%;accent-color:var(--ink)}
+.vol{font-size:40px;font-weight:800;letter-spacing:-.03em}.vol small{font-size:15px;color:var(--sub);font-weight:500}
+.tot{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.tot b{font-size:17px}
+.be{margin-top:14px;padding:12px;border-radius:12px;background:#f3f2ee;font-size:14px}
+svg text{font-family:Pretendard,"맑은 고딕",sans-serif}
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--sub);margin-top:8px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s}
+.step:hover,.step.on{border-color:var(--ink)}
+.step .n{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.step b{display:block;margin-top:8px;font-size:14px}.step span{font-size:12px;color:var(--mute)}
+.stepbox{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;min-height:64px}
+.human{display:inline-block;font-size:11px;padding:1px 7px;border-radius:5px;background:#fdecdf;color:#a3461b;margin-left:4px}
+/* radar */
+.radar{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;color:var(--sub)}
+.chip.on{color:#fff}
+.chip s{opacity:.7}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;font-size:14px}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f3f2ee;font-size:13px;color:var(--sub);font-weight:600}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+.note{font-size:13px;color:var(--mute);margin-top:10px}
+.pros li::marker{color:var(--a3)}.cons li::marker{color:var(--warn)}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px}.pc ul{margin:6px 0 0;padding-left:18px}.pc h4{margin:0;font-size:13px;color:var(--sub)}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tl .card h4{margin:0 0 8px}
+.lic{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.lic div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px}
+.no{color:var(--warn);font-weight:700}.ok{color:#11734f;font-weight:700}.paid{color:#a3461b;font-weight:700}
+footer{padding:30px 0 60px;color:var(--mute);font-size:12px}footer a{color:var(--sub);word-break:break-all}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}.fade.in{opacity:1;transform:none}
+@media(max-width:860px){.cards{gap:24px}.cards,.status,.calc,.radar,.tl,.pc{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
+@media print{nav{display:none}.fade{opacity:1;transform:none}section{break-inside:avoid}}
+</style></head><body>
+<nav><div class="wrap">
+<a href="#sum">한눈에</a><a href="#cost">비용 계산</a><a href="#flow">일하는 순서</a><a href="#hex">육각형 성능</a><a href="#rank">모델 순위</a><a href="#cmp">3안 비교</a><a href="#test">비교 시험</a><a href="#need">필요한 것</a>
+</div></nav>
+
+<div class="wrap">
+<header id="sum">
+ <div class="eyebrow">국내영업 판매용 영상 · 기획서 v1.1 · 2026-11-17 · 작성 PC-김호철 · 요청 강응찬 팀장님 → 심준보 님</div>
+ <h1>판매 영상은 <span style="color:var(--a2)">힉스필드로 바로 만들고</span>,<br>GPU는 <span style="color:var(--a3)">빌려서 먼저 시험</span>합니다.</h1>
+ <p class="lead">숏폼 1편(15~30초)을 기준으로 세 가지 방법을 비교했습니다. 품질은 상용 모델이 한 단계 위이고, 그래픽카드를 사는 안은 월 100편을 넘게 만들어야 본전이 납니다.</p>
+
+ <div class="cards" style="margin-top:30px">
+  <div class="card plan best fade"><span class="badge" style="background:var(--a2)">추천 · 바로 시작</span>
+   <div class="tag"><span class="dot" style="background:var(--a2)"></span>2안</div><h3>힉스필드</h3>
+   <div class="tag">상용 최신 모델(Seedance 2.5 · Kling 4.0)을 골라 씀</div>
+   <div class="big">3.2<small>만원 / 편</small></div>
+   <dl class="kv"><dt>1편 시간</dt><dd>30분~1시간</dd><dt>첫 영상까지</dt><dd>1~2일</dd><dt>처음 드는 돈</dt><dd>0원 (월 $49~)</dd><dt>품질</dt><dd>최상</dd></dl>
+   <div class="verdict" style="background:#fdecdf;color:#a3461b">품질 최고 · 영업팀이 웹에서 직접 만들 수도 있음</div></div>
+  <div class="card plan fade"><span class="badge" style="background:var(--a3)">같이 시험</span>
+   <div class="tag"><span class="dot" style="background:var(--a3)"></span>3안</div><h3>GPU 대여 + ComfyUI</h3>
+   <div class="tag">오픈 모델 Wan 2.2 + 휴롬 제품 전용 학습(LoRA)</div>
+   <div class="big">1.2<small>만원 / 편</small></div>
+   <dl class="kv"><dt>1편 시간</dt><dd>1.5~2시간</dd><dt>첫 영상까지</dt><dd>1~2주</dd><dt>처음 드는 돈</dt><dd>0원</dd><dt>품질</dt><dd>중</dd></dl>
+   <div class="verdict" style="background:#e3f5ec;color:#11734f">가장 쌈 · 많이 찍는 변형 영상은 이쪽으로</div></div>
+  <div class="card plan fade"><span class="badge" style="background:var(--mute)">보류</span>
+   <div class="tag"><span class="dot" style="background:var(--a1)"></span>1안</div><h3>그래픽카드 구매 + ComfyUI</h3>
+   <div class="tag">RTX 5090 PC를 사서 회사 안에서 돌림</div>
+   <div class="big">≈0<small>원 / 편 · 처음 1,600만원</small></div>
+   <dl class="kv"><dt>1편 시간</dt><dd>2~3시간</dd><dt>첫 영상까지</dt><dd>4~6주</dd><dt>GPU 시세</dt><dd>1,119만원 (1월의 2배+)</dd><dt>품질</dt><dd>중</dd></dl>
+   <div class="verdict" style="background:#f0efeb;color:var(--sub)">월 100편↑ 확실 + 시세 내려올 때 다시</div></div>
+ </div>
+
+ <div class="status">
+  <div class="card fade"><h4 style="margin:0">진행 상황 (11/17)</h4>
+   <ul class="todo" style="list-style:none;padding:0">
+    <li><span class="chk done">완료</span>준보 님 승인 — 2안 시작 + 3안 시험 (19:41)</li>
+    <li><span class="chk done">완료</span>video-agent · comfyui-workflow 스킬 승인 카드 올림</li>
+    <li><span class="chk wait">대기</span>힉스필드 Plus($49/월) 결제 — 카드 입력은 준보 님</li>
+    <li><span class="chk wait">대기</span>RunPod 가입·충전(약 5만원), API 키 따로 전달</li>
+    <li><span class="chk wait">대기</span>영업팀 자료 — 제품 1종 사진·로고·참고 영상 2~3개</li>
+   </ul></div>
+  <div class="card fade"><h4 style="margin:0">라이선스에서 걸러진 것</h4>
+   <div class="lic">
+    <div>MiniMax H3<br><span class="no">한국 사용 불가</span></div>
+    <div>LTX-2.3<br><span class="paid">연매출 1천만$↑ 유료</span></div>
+    <div>Wan 2.2<br><span class="ok">상업 사용 무료</span></div>
+   </div>
+   <p class="note">그래서 1·3안은 Wan 2.2가 기준입니다. 오픈 모델 1등(MiniMax H3)은 품질이 좋아도 쓰지 않습니다.</p></div>
+ </div>
+</header>
+
+<section id="cost" class="fade">
+ <h2>몇 편부터 어느 안이 이득인가</h2>
+ <p class="secsub">한 달에 만드는 편수를 움직여 보세요. 누적 비용과 손익분기가 바로 바뀝니다.</p>
+ <div class="calc">
+  <div class="card">
+   <div style="font-size:13px;color:var(--sub)">한 달 숏폼 편수</div>
+   <div class="vol"><span id="v">30</span><small> 편 / 월</small></div>
+   <input id="r" type="range" min="2" max="200" value="30">
+   <div class="seg" id="pre" style="margin:8px 0 14px"><button data-v="10">10편</button><button data-v="30" class="on">30편</button><button data-v="100">100편</button></div>
+   <div style="font-size:13px;color:var(--sub);margin-bottom:6px">보는 기간</div>
+   <div class="seg" id="per"><button data-m="12" class="on">1년</button><button data-m="24">2년</button><button data-m="36">3년</button></div>
+   <div style="margin-top:16px" id="tots"></div>
+   <div class="be" id="be"></div>
+  </div>
+  <div class="card"><svg id="cc" class="chart" viewBox="0 0 720 400"></svg>
+   <div class="legend"><span><span class="dot" style="background:var(--a1)"></span>1안 구매</span><span><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</span><span><span class="dot" style="background:var(--a3)"></span>3안 대여</span></div>
+   <p class="note">가정(중간값): 1안 처음 1,600만원 + 편당 전기 500원 + 월 관리 3만원 · 2안 편당 3.2만원 · 3안 편당 1.15만원 + 월 저장 1.5만원. 숏폼 15~30초, 컷마다 4번 생성해 고름. 환율 1,400원. 실제 크레딧 단가는 결제 후 시험 생성으로 확정합니다.</p></div>
+ </div>
+</section>
+
+<section id="flow" class="fade">
+ <h2>영상 에이전트가 일하는 순서</h2>
+ <p class="secsub">영업 담당자는 TeamHub에 말로 요청만 합니다. ComfyUI 같은 어려운 화면은 만지지 않습니다. 단계를 누르면 설명이 나옵니다.</p>
+ <div class="steps" id="steps"></div>
+ <div class="stepbox" id="stepbox"></div>
+ <div class="tw" style="margin-top:22px"><table>
+  <tr><th>영상 종류</th><th>쓰는 곳</th><th>형식</th><th>한 달 예상</th></tr>
+  <tr><td><b>제품 홍보 숏폼</b></td><td>인스타그램 · 유튜브 쇼츠 · 틱톡</td><td>9:16 · 15~30초</td><td>10~30편</td></tr>
+  <tr><td><b>상세페이지 영상</b></td><td>자사몰 · 쿠팡 · 네이버 스마트스토어</td><td>16:9 또는 1:1 · 10~20초</td><td>신제품·리뉴얼 때</td></tr>
+  <tr><td><b>홈쇼핑 · 라이브 보조</b></td><td>홈쇼핑 VCR · 라이브커머스</td><td>16:9 · 15~60초</td><td>방송 일정마다</td></tr>
+  <tr><td><b>판촉 · 시즌</b></td><td>명절·가정의 달 판촉, 매장 모니터</td><td>16:9 · 9:16</td><td>시즌마다</td></tr>
+ </table></div>
+ <p class="note">한 달 수량은 가정입니다. 영업팀에서 실제 수량을 받으면 위 계산기 기본값을 바꿉니다.</p>
+</section>
+
+<section id="hex" class="fade">
+ <h2>육각형 성능표 — 가전 판매 마케팅 기준</h2>
+ <p class="secsub">모델을 눌러 겹쳐 보세요. 점수는 공개 순위·사양을 근거로 한 추정이고, 비교 시험을 하면 실제 점수로 바꿉니다.</p>
+ <div class="radar">
+  <div class="card"><div class="chips" id="chips"></div><svg id="rd" class="chart" viewBox="0 0 440 400"></svg></div>
+  <div class="card" id="mdesc"></div>
+ </div>
+ <p class="note">한글 글자는 모든 모델이 2점 이하입니다. 자막·가격·혜택 문구는 영상 모델로 만들지 않고 편집 단계에서 정확한 글꼴로 얹습니다.</p>
+</section>
+
+<section id="rank" class="fade">
+ <h2>공개 순위 (Artificial Analysis 영상 아레나 · 11/13)</h2>
+ <p class="secsub">품질 최상위는 비공개 상용 모델입니다. 순위는 집계처마다 다릅니다.</p>
+ <div class="tw"><table>
+  <tr><th>모델</th><th>회사</th><th>글→영상</th><th>사진→영상</th><th>1초 값($)</th><th>가중치</th><th>쓰는 안</th></tr>
+  <tr><td><b>Wan 3.0</b></td><td>알리바바</td><td>1175 <b>1위</b></td><td>1108</td><td>0.20</td><td>비공개</td><td>2안 후보*</td></tr>
+  <tr><td><b>Seedance 2.5</b></td><td>바이트댄스</td><td>1155</td><td>1161 <b>1위</b></td><td>0.569</td><td>비공개</td><td>2안 주력</td></tr>
+  <tr><td><b>Gemini Omni Flash 1.2</b></td><td>구글</td><td>1154</td><td>—</td><td>0.104</td><td>비공개</td><td>힉스필드 미확인</td></tr>
+  <tr><td><b>MiniMax H3</b></td><td>미니맥스</td><td>1161</td><td>—</td><td>0.08</td><td><span class="no">공개 · 한국 불가</span></td><td>참고만</td></tr>
+  <tr><td><b>LTX-2.3 Fast</b></td><td>라이트릭스</td><td>973</td><td>—</td><td>—</td><td><span class="paid">공개 · 유료 조건</span></td><td>1·3안 보조</td></tr>
+  <tr><td><b>Wan 2.2 14B</b></td><td>알리바바</td><td>순위 밖(구버전)</td><td>—</td><td>—</td><td><span class="ok">공개 · 상업 무료</span></td><td>1·3안 기준</td></tr>
+ </table></div>
+ <p class="note">* 힉스필드에는 Wan 2.6까지 올라와 있습니다(11/17 계정 조회). Kling 4.0 · Cinema Studio 3.0은 같은 순위표에서 점수를 확인하지 못했습니다.</p>
+</section>
+
+<section id="cmp" class="fade">
+ <h2>3안 비교</h2>
+ <p class="secsub">비용·시간·품질·쓰기 쉬움·보안·위험을 한 표에. 아래는 안마다 우리한테 좋은 점 3개와 약한 점 2개입니다.</p>
+ <div class="tw"><table>
+  <tr><th></th><th><span class="dot" style="background:var(--a1)"></span>1안 구매</th><th><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</th><th><span class="dot" style="background:var(--a3)"></span>3안 대여</th></tr>
+  <tr><td><b>처음 드는 돈</b></td><td>약 1,500~1,700만원<br><span style="color:var(--mute);font-size:12px">RTX 5090 1,119만원 + 본체 400~600만원 추정</span></td><td>0원 (월 $49~129)</td><td>0원</td></tr>
+  <tr><td><b>숏폼 1편</b></td><td>거의 0원 (전기료)</td><td>1.7~4.8만원 (중간 3.2)</td><td>0.8~1.5만원 (중간 1.2)</td></tr>
+  <tr><td><b>1편 시간</b></td><td>2~3시간</td><td>30분~1시간</td><td>1.5~2시간</td></tr>
+  <tr><td><b>첫 영상까지</b></td><td>4~6주 (품의·구매·조립 + 설치)</td><td>1~2일</td><td>1~2주</td></tr>
+  <tr><td><b>품질 상한</b></td><td>중 (오픈 모델)</td><td>최상 (상용 최신)</td><td>중 (1안과 같음)</td></tr>
+  <tr><td><b>영업팀 쓰기</b></td><td>에이전트를 통해서만</td><td>쉬움 — 웹 직접 + 에이전트</td><td>에이전트를 통해서만</td></tr>
+  <tr><td><b>보안</b></td><td>회사 PC 안에서 끝남</td><td>제품 사진 외부 업로드</td><td>외부 GPU(쓰고 지움)</td></tr>
+  <tr><td><b>위험</b></td><td>시세 고점 · 고장·발열 · 모델 세대 교체</td><td>요금·크레딧 정책 변경</td><td>대여 가격 인상(9월 이력) · 켜고 끄기</td></tr>
+ </table></div>
+ <div class="cards" style="margin-top:18px">
+  <div class="card"><b><span class="dot" style="background:var(--a1)"></span>1안 구매</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>많이 만들수록 편당 0원에 가까움</li><li>미공개 신제품 사진이 밖으로 안 나감</li><li>제품 전용 학습(LoRA) 마음껏 반복</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>처음 1,600만원 · 시세 고점</li><li>품질 상한 낮음, 고장·업데이트 직접</li></ul></div></div></div>
+  <div class="card"><b><span class="dot" style="background:var(--a2)"></span>2안 힉스필드</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>최고 품질 모델을 한 계정에서</li><li>영업팀이 웹에서 직접 · 광고 템플릿</li><li>오늘 시작, 새 모델 자동 추가</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>편당 비용 가장 비쌈</li><li>사진 외부 업로드 · 요금 변경 위험</li></ul></div></div></div>
+  <div class="card"><b><span class="dot" style="background:var(--a3)"></span>3안 대여</b><div class="pc" style="margin-top:8px"><div><h4>좋은 점</h4><ul class="pros"><li>편당 비용 가장 쌈</li><li>1안과 같은 환경을 큰돈 없이 시험</li><li>필요할 때만 H100으로 빠르게</li></ul></div><div><h4>약한 점</h4><ul class="cons"><li>품질 상한은 1안과 같음</li><li>서버 켜고 끄기 관리 필요</li></ul></div></div></div>
+ </div>
+</section>
+
+<section id="test" class="fade">
+ <h2>비교 영상 시험 — 퀄리티로 고르기</h2>
+ <p class="secsub">같은 휴롬 착즙기, 같은 콘티로 안마다 영상을 만들어 영업팀이 어느 안인지 모르게 고릅니다. 2주 · 약 30만원.</p>
+ <div class="tl">
+  <div class="card"><h4>1주차 — 준비</h4><ul class="todo"><li>힉스필드 결제 · RunPod 서버</li><li>영업팀 제품 사진 5장 이상 받기</li><li>Wan 2.2 워크플로 · 제품 LoRA 학습</li><li>콘티 1개 확정 (영업팀 OK)</li></ul></div>
+  <div class="card"><h4>2주차 — 만들고 고르기</h4><ul class="todo"><li>숏폼 9:16 20초 + 상세 16:9 15초 × 3안 = <b>6편</b></li><li>영업팀 3~5명 블라인드 5점 평가 (육각형 6기준)</li><li>「이대로 올릴 수 있나」 예/아니오</li><li>비용·시간 실측 → 육각형·계산기 실제 값으로</li></ul></div>
+ </div>
+ <p class="note">1안은 장비가 없으니 3안 GPU로 같은 조건을 대신합니다(같은 모델이면 결과가 같음). 2안은 Seedance 2.5와 Kling 4.0 중 나은 것.</p>
+</section>
+
+<section id="need" class="fade">
+ <h2>필요한 것 · 주의</h2>
+ <div class="cards">
+  <div class="card"><h4 style="margin:0">영업팀 자료</h4><ul class="todo"><li>제품 1종 고화질 사진 (정면·측면·사용 장면)</li><li>로고 파일 · 브랜드 색·글꼴</li><li>참고 영상 2~3개 · 월 예상 수량·채널</li><li>쓸 수 있는 음악 · 광고 문구 점검자</li><li>AI 사람 얼굴 써도 되는지</li></ul></div>
+  <div class="card"><h4 style="margin:0">준보 님 결제·권한</h4><ul class="todo"><li>힉스필드 Plus $49/월 (1,000크레딧)</li><li>RunPod 가입·충전 약 5만원</li><li>결과 영상 SharePoint 폴더 · 영업팀 공유</li><li>1안 고를 때만: 구매 품의 · IT 보안</li></ul></div>
+  <div class="card"><h4 style="margin:0">주의</h4><ul class="todo"><li>AI 기본법(2026-01 시행) — 생성형 AI 결과물 표시 의무 법무 확인</li><li>건강 효능 단정·과장 문구 금지</li><li>가격·순위는 11월 자료, 결제 전 공식 가격표 재확인</li></ul></div>
+ </div>
+</section>
+</div>
+
+<footer><div class="wrap">
+<b>출처</b><br>
+MarkTechPost, Best AI Video Generation Models 2026 (11/13) — <a href="https://www.marktechpost.com/2026/11/13/best-ai-video-generation-models-2026/">marktechpost.com</a> ·
+Arena 영상 순위 — <a href="https://arena.ai/leaderboard/video/image-to-video">arena.ai</a> ·
+MiniMax H3 — <a href="https://blog.comfy.org/p/minimax-h3-day-0-support-in-comfyui">blog.comfy.org</a>, 라이선스 <a href="https://www.instasd.com/post/minimax-h3-open-weights-comfyui-local">instasd.com</a> ·
+LTX-2 라이선스 — <a href="https://ltx.io/model/license">ltx.io</a> ·
+Wan 2.2 — <a href="https://www.thundercompute.com/blog/wan-2-2-comfyui-ai-video-model">thundercompute.com</a> ·
+RTX 5090 국내 가격 — <a href="https://blog.kwt.co.kr/?p=3067">blog.kwt.co.kr</a> ·
+RunPod 가격 — <a href="https://www.runpod.io/gpu-cloud/pricing">runpod.io</a> ·
+힉스필드 가격 — <a href="https://higgsfield.ai/blog/higgsfield-pricing-explained">higgsfield.ai</a> · 힉스필드 모델·GPU 목록은 연결된 계정에서 직접 조회(11/17)<br><br>
+휴롬 영상 에이전트 기획서 v1.1 (HTML) · Word판 v1과 같은 내용 + 계산기·진행 상황
+</div></footer>
+
+<script>
+const C={1:'#2a78d6',2:'#eb6834',3:'#1baf7a'};
+let V=30,M=12;
+const f1=(v,m)=>1600+0.05*v*m+3*m, f2=(v,m)=>3.2*v*m, f3=(v,m)=>1.15*v*m+1.5*m;
+const won=x=>x>=10000?(x/10000).toFixed(x>=100000?0:1)+'억':Math.round(x).toLocaleString()+'만';
+function draw(){
+ document.getElementById('v').textContent=V;
+ const s=document.getElementById('cc'),W=720,H=400,L=64,R=96,T=20,B=40;
+ const ymax=Math.max(f1(V,M),f2(V,M),f3(V,M))*1.08;
+ const x=m=>L+(W-L-R)*m/M,y=c=>H-B-(H-T-B)*c/ymax;
+ let g='';
+ const step=[1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000].find(k=>ymax/k<=6);
+ for(let c=0;c<=ymax;c+=step) g+=`<line x1="${L}" x2="${W-R}" y1="${y(c)}" y2="${y(c)}" stroke="#ebeae6"/><text x="${L-8}" y="${y(c)+4}" text-anchor="end" font-size="11" fill="#8a8984">${won(c)}원</text>`;
+ const xs=M/ (M>12?6:4);
+ for(let m=0;m<=M;m+=xs) g+=`<text x="${x(m)}" y="${H-B+20}" text-anchor="middle" font-size="11" fill="#8a8984">${m}개월</text>`;
+ const lines=[[1,f1],[2,f2],[3,f3]];
+ for(const [k,f] of lines){
+  let d='';for(let m=0;m<=M;m+=.25) d+=(m?'L':'M')+x(m).toFixed(1)+','+y(f(V,m)).toFixed(1);
+  g+=`<path d="${d}" fill="none" stroke="${C[k]}" stroke-width="2.6" stroke-linecap="round" class="ln"/>`;
+  g+=`<circle cx="${x(M)}" cy="${y(f(V,M))}" r="4" fill="${C[k]}"/><text x="${x(M)+8}" y="${y(f(V,M))+4}" font-size="12" font-weight="700" fill="#0b0b0b">${won(f(V,M))}원</text>`;
+ }
+ const b12=1600/((3.2-0.05)*V-3), b13=1600/(1.1*V-1.5);
+ for(const [b,f,lab] of [[b12,f2,'1안=2안'],[b13,f3,'1안=3안']]) if(b>0&&b<=M){
+  g+=`<line x1="${x(b)}" x2="${x(b)}" y1="${T}" y2="${H-B}" stroke="#0b0b0b" stroke-dasharray="3 4" opacity=".35"/><circle cx="${x(b)}" cy="${y(f(V,b))}" r="5.5" fill="#fff" stroke="#0b0b0b" stroke-width="2"/><text x="${x(b)+8}" y="${y(f(V,b))-10}" font-size="12" font-weight="700">${lab} · ${b.toFixed(1)}개월</text>`;}
+ s.innerHTML=g;
+ s.querySelectorAll('.ln').forEach(p=>{const l=p.getTotalLength();p.style.strokeDasharray=l;p.style.strokeDashoffset=l;p.getBoundingClientRect();p.style.transition='stroke-dashoffset .7s ease';p.style.strokeDashoffset=0});
+ const t=[[1,'1안 구매',f1],[2,'2안 힉스필드',f2],[3,'3안 대여',f3]].map(([k,n,f])=>[k,n,f(V,M)]);
+ const min=Math.min(...t.map(a=>a[2]));
+ document.getElementById('tots').innerHTML=`<div style="font-size:13px;color:var(--sub)">${M}개월 누적</div>`+t.map(([k,n,c])=>`<div class="tot"><span><span class="dot" style="background:${C[k]}"></span>${n}${c===min?' <span class="chk done">가장 쌈</span>':''}</span><b>${won(c)}원</b></div>`).join('');
+ const be=document.getElementById('be');
+ const fm=b=>b>0&&isFinite(b)?(b<=120?b.toFixed(1)+'개월':'10년 넘게'):'안 남';
+ be.innerHTML=`<b>그래픽카드를 사는 안(1안)의 본전</b><br>2안보다 싸지는 때: <b>${fm(b12)}</b> · 3안보다 싸지는 때: <b>${fm(b13)}</b><br><span style="color:var(--sub);font-size:13px">${b12<=12?'1년 안에 2안 대비 본전이 납니다.':'1년 안에는 본전이 안 납니다.'} 1안이 3안보다 1년 안에 싸지려면 월 약 ${Math.ceil((1600/12+1.5)/1.1)}편이 필요합니다.</span>`;
+}
+const r=document.getElementById('r');
+r.oninput=()=>{V=+r.value;document.querySelectorAll('#pre button').forEach(b=>b.classList.toggle('on',+b.dataset.v===V));draw()};
+document.querySelectorAll('#pre button').forEach(b=>b.onclick=()=>{V=+b.dataset.v;r.value=V;r.oninput()});
+document.querySelectorAll('#per button').forEach(b=>b.onclick=()=>{M=+b.dataset.m;document.querySelectorAll('#per button').forEach(x=>x.classList.toggle('on',x===b));draw()});
+
+const ST=[['요청 받기','TeamHub에 말로','「H400 착즙 숏폼, 가을 사과, 20초」처럼 TeamHub에 말로 요청합니다. 빠진 것(용도·가격 문구·납기)은 에이전트가 한 번에 묻습니다.'],
+['대본 · 콘티','장면 4~6개','컷마다 카메라·자막·길이를 정해 표로 먼저 보여 줍니다.<span class="human">영업팀 OK</span>'],
+['제품 첫 장면','실제 제품 사진','실제 휴롬 제품 사진으로 첫 장면 이미지를 만듭니다. 제품 모양·로고가 바뀌지 않게 하는 핵심 단계입니다.'],
+['영상 생성','컷마다 2~4개','이미지를 영상으로 바꿉니다. 제품 사진 컷은 Seedance 2.5, 손·착즙 동작 컷은 Kling 4.0. 3안은 Wan 2.2.'],
+['자막·로고·음악','편집에서 얹기','한글 자막과 가격·혜택 문구는 영상 모델로 만들지 않고, ffmpeg로 정확한 글꼴(Pretendard)로 얹습니다.'],
+['검수','체크리스트','제품 모양이 바뀌었는지, 손가락이 이상하지 않은지, 과장·건강 효능 문구가 없는지 봅니다.<span class="human">사람 최종 확인</span>'],
+['전달 · 보관','SharePoint','숏폼·상세페이지 규격별로 내보내 SharePoint에 저장하고 링크를 드립니다. 쓴 모델·크레딧·시간도 같이 적습니다.']];
+const sw=document.getElementById('steps'),sb=document.getElementById('stepbox');
+sw.innerHTML=ST.map((s,i)=>`<div class="step" data-i="${i}"><div class="n">${i+1}</div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+const pick=i=>{sw.querySelectorAll('.step').forEach((e,j)=>e.classList.toggle('on',j==i));sb.innerHTML=`<b>${i+1}. ${ST[i][0]}</b> — ${ST[i][2]}`};
+sw.querySelectorAll('.step').forEach(e=>e.onclick=()=>pick(+e.dataset.i));pick(0);
+
+const AX=['제품 형태','재질·빛','손·동작','한글 글자','길이·해상도','비용·시간'];
+const MD=[['Seedance 2.5','2안',[5,5,4,2,5,2],C[2],'제품 사진→영상 1위. 스텐·유리 반사와 과일 질감이 가장 좋고 4K.','가장 비쌈(1초 0.57달러).'],
+['Kling 4.0','2안',[4,4,4,2,4,3],'#f2a27f','손·사람 동작이 자연스러움(착즙 장면). 값이 중간.','최고 1080p, 재질은 Seedance보다 약간 아래.'],
+['Cinema Studio 3.0','2안',[4,5,4,2,5,2],'#b8481d','영화 같은 카메라·색감, 4K·최대 15초.','비싼 편, 제품 형태 유지가 Seedance보다 약간 아래.'],
+['Wan 2.2 14B','1·3안',[3,3,3,1,2,4],C[3],'상업 사용 무료, 제품 전용 학습(LoRA), 대여 GPU에서 싸게.','720p·5초 단위라 컷을 이어 붙여야 함, 주스 액체 표현이 덜 자연스러움.'],
+['LTX-2.3','1·3안',[2,3,2,1,4,4],'#6fcfa9','4K·긴 컷·소리까지 한 번에, 빠름.','디테일이 Wan보다 약함, 휴롬 규모면 유료 라이선스.'],
+['MiniMax H3','참고',[3,4,3,2,3,3],'#8a8984','오픈 모델 중 품질 최고.','라이선스상 한국 사용 불가 — 쓰지 않음.']];
+let on=new Set([0,3]);
+function radar(){
+ const s=document.getElementById('rd'),cx=220,cy=200,R=140,a=i=>-Math.PI/2+i*Math.PI/3,p=(i,v)=>[cx+R*v/5*Math.cos(a(i)),cy+R*v/5*Math.sin(a(i))];
+ let g='';
+ for(let l=1;l<=5;l++) g+=`<polygon points="${AX.map((_,i)=>p(i,l).join(',')).join(' ')}" fill="none" stroke="#e6e4df"/>`;
+ AX.forEach((t,i)=>{const [x,y]=p(i,6.1);g+=`<line x1="${cx}" y1="${cy}" x2="${p(i,5)[0]}" y2="${p(i,5)[1]}" stroke="#e6e4df"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="12.5" fill="#52514e">${t}</text>`});
+ [...on].forEach(k=>{const m=MD[k];g+=`<polygon points="${m[2].map((v,i)=>p(i,v).join(',')).join(' ')}" fill="${m[3]}" fill-opacity=".14" stroke="${m[3]}" stroke-width="2.4" style="transform-origin:${cx}px ${cy}px;animation:pop .5s ease"/>`;
+  m[2].forEach((v,i)=>{const [x,y]=p(i,v);g+=`<circle cx="${x}" cy="${y}" r="3.5" fill="${m[3]}"/>`})});
+ s.innerHTML='<style>@keyframes pop{from{transform:scale(.3);opacity:0}}</style>'+g;
+ document.getElementById('chips').innerHTML=MD.map((m,i)=>`<button class="chip${on.has(i)?' on':''}" data-i="${i}" style="${on.has(i)?`background:${m[3]};border-color:${m[3]}`:''}">${m[0]} <small>${m[1]}</small></button>`).join('');
+ document.querySelectorAll('#chips .chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;on.has(i)?on.delete(i):on.add(i);radar()});
+ document.getElementById('mdesc').innerHTML=(on.size?[...on]:[]).map(k=>{const m=MD[k];return `<div style="padding:10px 0;border-bottom:1px solid var(--line)"><b><span class="dot" style="background:${m[3]}"></span>${m[0]}</b> <span style="color:var(--mute);font-size:12px">${m[1]} · 합계 ${m[2].reduce((a,b)=>a+b)}/30</span><div class="pc" style="margin-top:6px"><div><h4>좋은 점</h4>${m[4]}</div><div><h4>약한 점</h4>${m[5]}</div></div></div>`}).join('')||'<span style="color:var(--mute)">왼쪽에서 모델을 고르세요.</span>';
+}
+radar();draw();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(e=>io.observe(e));
+const secs=[...document.querySelectorAll('header[id],section[id]')],nl=document.querySelectorAll('nav a');
+addEventListener('scroll',()=>{let c=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<120)c=s.id});nl.forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+c))});
+</script></body></html>
